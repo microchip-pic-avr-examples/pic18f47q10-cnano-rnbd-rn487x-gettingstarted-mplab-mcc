@@ -4,10 +4,10 @@
     "content": {
         "metaDataVersion": "1.3.0",
         "name": "com.microchip.mcu8.mplabx.project.pic18f47q10-cnano-rnbd-rn487x-gettingstarted-mplab-mcc",
-        "version": " ",
-        "displayName": "",
+        "version": "1.0.0",
+        "displayName": "RNBD451_RN487x Demo Application for Transparent UART & Basic Data Exchange",
         "projectName": "pic18f47q10-cnano-rnbd-rn487x-gettingstarted-mplab-mcc",
-        "shortDescription": "Thiscode example demonstrates how to transfer Data between mobile APP and to the PC Terminal for rnbd-rn487x ble devicesusing PIC microcontroller.\r\n\r\nCompatible MCUs are: PIC18F47Q10",
+        "shortDescription": "This code example demonstrates how to transfer Data between mobile APP and to the PC Terminal for rnbd-rn487x ble devicesusing PIC microcontroller.\r\n\r\nCompatible MCUs are: PIC18F47Q10",
         "ide": {
             "name": "MPLAB X",
             "semverRange": ">=6.0.5"
@@ -19,12 +19,12 @@
             }
         ],
         "dfp": {
-            "name": "",
-            "semverRange": ""
+            "name": "PIC18F-Q_DFP",
+            "semverRange": "1.14.223"
         },
         "configurator": {
-            "name": "",
-            "semverRange": ""
+            "name": "MCC",
+            "semverRange": "5.1.17"
         },
         "device": {
             "metaDataVersion": "1.0.0",
@@ -37,8 +37,16 @@
             }
         },
         "author": "Dinesh Arasu",
-        "peripherals": [],
-        "keywords": [],
+        "peripherals": [
+			"USART"
+		],
+        "keywords": [
+			"RNBD",
+			"RNBD451",
+			"RN487x",
+			"RN4870",
+			"RN4871"
+		],
         "additionalData": {
             "longDescription": {
                 "metaDataVersion": "1.0.0",
