@@ -41,11 +41,7 @@
 			"USART"
 		],
         "keywords": [
-			"RNBD",
-			"RNBD451",
-			"RN487x",
-			"RN4870",
-			"RN4871"
+			"RN4870"
 		],
         "additionalData": {
             "longDescription": {
