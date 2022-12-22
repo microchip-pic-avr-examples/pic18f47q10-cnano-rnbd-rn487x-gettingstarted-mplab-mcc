@@ -9,7 +9,7 @@
 -   [Hardware Used](#hardware-used)
 -   [Software Prerequisite](#software-prerequisite)
 -   [Project Setup](#project-setup)
--   [RNBD451 Set Up & Running Example Application](#rnbd451-set-up-&-running-example-application)
+-   [RNBD451 Set Up and Running Example Application](#rnbd451-set-up-&-running-example-application)
     -   [RNBD Basic Data Exchange PIN Settings](#rnbd-basic-data-exchange-pin-settings)
     -   [RNBD Transparent UART Application PIN Settings](#rnbd-transparent-uart-application-pin-settings)
     -   [RNBD GPIO Based Connection Setup](#rnbd-gpio-based-connection-setup)
@@ -26,9 +26,9 @@
 
 # Introduction<a name="introduction"></a>
 
-The MPLAB® Code Configurator RNBD\(TBD\)/[RN487x](https://www.microchip.com/wwwproducts/en/RN4870) BLE Modules Library allows quick and easy<br /> configuration of the C code generated software driver based upon the user’s selected API<br /> features available from the MCC Library. Generated Driver code supports use of either<br /> BLE Module with use of a PIC device.
+The MPLAB® Code Configurator (MCC) RNBD(TBD)/RN487x BLE Modules Library allows to promptly configure the C code-generated software driver, based on the user’s selected API features available in the MCC Library. The Generated Driver code can support the BLE module using a PIC device.
 
-The library module uses a Graphic User Interface \(GUI\) presented by MCC within MPLABX<br /> which allows for selection of desired configuration, and custom configurations of the<br /> protocol. Customized C code is generated within the MPLABX project, in a folder named<br /> "MCC Generated Files".
+The library module uses a Graphic User Interface (GUI) provided by the MCC, used to set the configuration, and the custom configurations of the protocol. The Customized C code is generated within the MPLABX project, in a folder named <br /> "MCC Generated Files".
 
 This Library uses \(1\) UART, \(1\) GPIO, and DELAY support at minimal.
 
@@ -92,12 +92,12 @@ Refer to the /images folder for source files & max resolution.
 
 # Software Prerequisite<a name="software-prerequisite"></a>
 
-To install the MPLAB® Code Configurator Plugin:
+To install the MPLAB® Code Configurator Plug-in:
 
-1.  Open the MPLAB Code Configurator page: [https://www.microchip.com/mcc](https://www.microchip.com/mcc)
-2.  In MPLAB X IDE, select Plugins from the Tools menu.
-3.  Select the Available Plugins tab.
-4.  Check the box for the MPLAB® Code Configurator v3, and click on Install.
+1.  Open the MPLAB® Code Configurator page: [https://www.microchip.com/mcc](https://www.microchip.com/mcc)
+2.  In MPLAB X IDE, select **Plugins** from the Tools menu.
+3.  Select the **Available Plugins** tab.
+4.  Check the box for the MPLAB® Code Configurator v3, and click **Install**.
 
 # Project Setup<a name="project-setup"></a>
 
@@ -107,15 +107,15 @@ To install the MPLAB® Code Configurator Plugin:
 
     ![](images/GUID-7D237BEA-C905-46FA-B1BC-A90CC2F8A2AA-low.png)
 
-2.  The Process described below is reflective of the Validation Hardware used with Microchip Bluetooth Data Mpbile App. Microcontrollers used for reference are the PIC18F47Q10 8-bit devices.
-3.  Open MCC by clicking Tools → Embedded → MPLAB® Code Configurator OR click on the MCC icon. ![](images/GUID-359085BA-D8D7-47F8-AF8D-750837A36071-low.png)
+2.  The Validation Hardware used with Microchip Bluetooth Data Mobile App is shown in the process below. PIC18F47Q10 8-bit devices are used for reference.
+3.  Open MCC by clicking Tools → Embedded → MPLAB® Code Configurator OR click the MCC icon. ![](images/GUID-359085BA-D8D7-47F8-AF8D-750837A36071-low.png)
 
     or
 
     ![](images/GUID-5ADA889B-5F93-48F2-B5EF-4EE824D9DEA5-low.png)
 
-4.  If MCC is not available; it is required to be installed. Navigate to Tools→ Plugins. Under Available Plugins select MPLAB® Code Configurator, ensure the checkbox is selected and press Install. Once this installation is completed, MCC will be available.![](images/GUID-FF1D230A-1359-45DE-9631-F96EA45455EE-low.png)
-5.  On launching MCC click on Content Manager button.
+4.  If MCC is not available; it is required to be installed. Navigate to Tools → Plugins. Under Available Plugins select MPLAB® Code Configurator, ensure the checkbox is selected and press **Install**. Once the installation is completed, MCC will be available.![](images/GUID-FF1D230A-1359-45DE-9631-F96EA45455EE-low.png)
+5.  On launching MCC click on **Content Manager** button.
 
     |WARNING|
     |-------|
@@ -150,7 +150,7 @@ To install the MPLAB® Code Configurator Plugin:
 
         <br />
 
-    3.  Click on Apply Button to finish the Library and Driver Configurations:
+    3.  Click on **Apply** Button to finish the Library and Driver Configurations:
 
         <br />
 
@@ -158,7 +158,7 @@ To install the MPLAB® Code Configurator Plugin:
 
         <br />
 
-6.  From the In the Device Resources panel under Libraries dropdown select: rnbd-rn487x BLE Module.
+6.  From the **Device Resources** panel under Libraries dropdown select: rnbd-rn487x BLE Module.
 
     <br />
 
@@ -182,7 +182,7 @@ To install the MPLAB® Code Configurator Plugin:
     <br />
 
 
-7.  The Notifications \[MCC\] tab will appear after library addition to describe required actions. These reflect the need for Reset Pin connected to the Module to be assigned to a pin this is required by the library. Select and configure dependent UART instance under Dependency Selector
+7.  The **Notifications \[MCC\]** tab will appear after the library addition to describe required actions. The library requires the Reset Pin to be connected to the Module, which needs to be assigned to a pin. Select and configure the dependent UART instance under Dependency Selector.
 
     ![](images/GUID-B93C6167-5693-4253-97A7-E08BE3AAACAC-low.png)
 
@@ -199,7 +199,7 @@ To install the MPLAB® Code Configurator Plugin:
             <br />
 
             **Note:**
-              Any one of the Examples Application can be selected which is common for both RNBD/RN487x
+              Any one of the Examples Application can be selected, which is common for both RNBD and RN487x.
 
 9.  Clock Settings:
     -   From the Project Resource panel under System select Clock Control
@@ -220,16 +220,16 @@ To install the MPLAB® Code Configurator Plugin:
 
 10. UART Settings:
     -   **PIC**
-        -   **NOTE:** The below UART selections are applicable for both Transparent UART Application & Basic Data Exchange \(EUSART1 & EUSART2\)
+        -   **NOTE:** The below UART selections are applicable for both Transparent UART Application and Basic Data Exchange \(EUSART1 and EUSART2\)
 
             ![](images/GUID-3EADDB10-5D40-486E-800D-4482BC56590A-low.png)![](images/GUID-33B90E9A-4F7C-4FC8-BFF3-64F93AC85A42-low.png)
 
 
 <br />
 
-# RNBD451 Set Up & Running Example Application<a name="rnbd451-set-up-&-running-example-application"></a>
+# RNBD451 Set Up and Running Example Application<a name="rnbd451-set-up-&-running-example-application"></a>
 
-This Topic explains us briefly regarding the RNBD451 MPLAB X-IDE Project Setup, Code Generation and Running the Basic Data Exchange & Transparent UART Application with PIC18F47Q10 Device.
+This topic briefly explains the RNBD451 MPLAB X-IDE Project Setup, Code Generation, Running the Basic Data Exchange and Transparent UART Application with the PIC18F47Q10 Device.
 
 ## RNBD Basic Data Exchange PIN Settings<a name="rnbd-basic-data-exchange-pin-settings"></a>
 
@@ -249,7 +249,7 @@ This Topic explains us briefly regarding the RNBD451 MPLAB X-IDE Project Setup, 
 **Note:**
 
 -   Basic Data Exchange Application uses only one instance of EUSART1 for data transfer
--   **Important:** EUSART Rx1/Tx1 **Uncheck** Analog, Slew Rate & Input Level Control checkboxes as shown below.
+-   **Important:** EUSART Rx1 and Tx1 **Uncheck** Analog, Slew Rate & Input Level Control checkboxes as shown below.
 
     ![](images/GUID-35C1A268-4B45-445C-A18D-6226F6B17F94-low.png)
 
@@ -271,7 +271,7 @@ Configuration for PIC Basic Data Exchange was completed.
 
 <br />
 
-Since PIC18F47Q10 has only **Two Instance** of EUSART's the second EUSART was loaded<br /> Automatically for CDC UART \(If Device has more Number of Instances will be listed<br /> accordingly to select the respective EUSART's\)
+Since PIC18F47Q10 has only **Two Instance** of EUSART's the second EUSART was loaded<br /> Automatically for CDC UART \(If Device has more Number of Instances it will be listed accordingly to select the respective EUSART's\)
 
 ![](images/GUID-442D1FB2-1B4A-4D4E-9F6B-5B457F25EC50-low.png)
 
@@ -279,7 +279,7 @@ Since PIC18F47Q10 has only **Two Instance** of EUSART's the second EUSART was lo
 
 -   Transparent UART Application uses two instance EUSART1 & EUSART2 for data transfer
 -   Make sure **Interrupt Driven** was enabled for both **EUSART1** & **EUSART2**.
--   **Important:** EUSART Rx1/Tx1 & Rx2/Tx2 **Uncheck** Analog, Slew Rate & Input Level Control checkboxes as shown below.
+-   **Important:** EUSART Rx1, Tx1 and Rx2, Tx2 **Uncheck** Analog, Slew Rate & Input Level Control checkboxes as shown below.
 
     <br />
 
@@ -294,7 +294,7 @@ Configuration for PIC Transparent UART was completed.
 
 ## RNBD GPIO Based Connection Setup<a name="rnbd-gpio-based-connection-setup"></a>
 
-The RNBD451 device has BT Status indication 1 and BT Status indication 2 pins which can be used<br /> to indicate GPIO based connection status. This feature can be useful in the scenario<br /> were the host MCU can verify the BT connection status by monitoring the status<br /> indication pins other than monitoring the connect message in the serial UART prints.
+The RNBD451 device can use BT Status indication 1 and BT Status indication 2 pins to indicate the GPIO connection status. Besides monitoring the connect message in the serial UART prints, this feature is useful when the Host MCU can verify the BT connection status, by monitoring the status indication pins.
 
 **Ble Status Indication Pin Table:**
 
@@ -341,7 +341,7 @@ The RNBD451 device has BT Status indication 1 and BT Status indication 2 pins wh
 
     <br />
 
-    By Default Analog, Start High, Weak Pullup, Slew Rate, Input Level Control<br /> checks will be selected for Status Indication Pin 1 & 2
+    By Default Analog, Start High, Weak Pull-up, Slew Rate, Input Level Control<br /> checks will be selected for Status Indication Pin 1 & 2
 
     <br />
 
@@ -349,7 +349,7 @@ The RNBD451 device has BT Status indication 1 and BT Status indication 2 pins wh
 
     <br />
 
-    **Uncheck** the Analog, Start High, Weak Pullup, Slew Rate, Input Level<br /> Control checks as shown in the below Picture
+    **Uncheck** the Analog, Start High, Weak Pull-Up, Slew Rate, Input Level<br /> Control checks as shown in the below picture
 
     <br />
 
@@ -385,7 +385,7 @@ The RNBD451 device has BT Status indication 1 and BT Status indication 2 pins wh
 
 5.  Connect the development board of your choice and connect the RNBD to the proper slot\(\) as shown below.
 
-    **Note:** Connect RNBD Click to **Slot 2** as shown in below image
+    **Note:** Connect RNBD Click to **Slot 2** as shown in the image below 
 
     <br />
 
@@ -393,7 +393,7 @@ The RNBD451 device has BT Status indication 1 and BT Status indication 2 pins wh
 
     <br />
 
-    **Important:** Slot was decided based on the UART Instances which was configured for this example application \(**PIN Mapping between MCU & RNBD Click**\).
+    **Important:** The slot was decided based on the UART Instances which were configured for this example (**PIN Mapping between MCU & RNBD Click**\).
 
 6.  Build the Generated Project:
 
@@ -411,13 +411,13 @@ The RNBD451 device has BT Status indication 1 and BT Status indication 2 pins wh
 
 **Basic Data Exchange:**
 
-This example shows how an MCU can be programmed to transmit data<br /> to a smart phone over BLE. Here the MCU device will send Periodic<br /> Transmission of a single character when **STREAM\_OPEN** is<br /> processed through the Message Handler.
+This example shows how a MCU can be programmed to transmit data<br /> to a smart phone over BLE. Here the MCU device will send Periodic<br /> Transmission of a single character when **STREAM\_OPEN** is<br /> processed through the Message Handler.
 
 This indicates to the MCU<br /> & RNBD Module that the application is in a DATA STREAMING mode<br /> of operation; and can expect to hear data over the BLE<br /> connection.\#define DEMO\_PERIODIC\_TRANSMIT\_COUNT<br /> \(10000\)\#define DEMO\_PERIODIC\_CHARACTER \(‘1’\)Are<br /> used in the example can be found \#defined at the top of<br /> rnbd\_example.c.
 
 ![](images/GUID-0C803050-62C5-4E5F-BA14-619E48B5916E-low.png)
 
-1.  Download and Install Phone Application for demonstration:
+1.  Download and Install the Phone Application for demonstration:
     1.  **Microchip Bluetooth Data**by **Microchip** from the [App Store](https://apps.apple.com/us/app/microchip-bluetooth-data/id1319166097) or from [Google Play Store](https://play.google.com/store/apps/details?id=com.microchip.bluetooth.data&hl=en_IN&gl=US).
 2.  Launch the Phone Application
 
@@ -429,11 +429,11 @@ This indicates to the MCU<br /> & RNBD Module that the application is in a DATA 
 
     <br />
 
-    Click on the 'BLE Smart' Sub Apps as shown below:
+    Click the **BLE Smart** Sub Apps as shown below:
 
     ![](images/GUID-E19A7964-8190-4C53-8BBA-6370A19C9829-low.png)
 
-3.  The Application will automatically scan the area for Bluetooth devices within a range. Look for "RNBD" device under scanned list.
+3.  The Application scans the area for Bluetooth devices within a range. Look for "RNBD" device under scanned list.
 
     <br />
 
@@ -449,15 +449,15 @@ This indicates to the MCU<br /> & RNBD Module that the application is in a DATA 
 
     <br />
 
-5.  Once connected Microchip Bluetooth App discovers all the services and characteristics supported by the RNBD451 device as shown in the following figure.
+5.  Once connected, the Microchip Bluetooth App discovers all the services and characteristics supported by the RNBD451 device, as shown in the following figure.
 
     ![](images/GUID-AC320004-8543-404F-806A-4C5E70E09E3B-low.png)
 
-6.  Click on Microchip Data Service Option and Select the Microchip Data Characteristic and Write Notify Indication to receive the data in Mobile App.
+6.  Click on **Microchip Data Service** Option,select the **Microchip Data Characteristic** and Write Notify Indication to receive the data in Mobile App.
 
     ![](images/GUID-65CA4B07-2C54-4799-A9AE-826FD83B676D-low.png)
 
-7.  Select "Listen for notifications" on the application.
+7.  Select **Listen for notifications** on the application.
     -   It may be required to "enable notification" access to the app on the<br /> phone.
 
         Data will begin to Send at a Periodic Rate to the device.
@@ -487,7 +487,7 @@ This is the END of the Basic Data Exchange Example
 
 |Transparent Serial:|
 |-------------------|
-|<br /> This example will demostrat data transmitted from a PC serial<br /> terminal is written to a smart phone app and vice versa. The MCU<br /> device will act as a bridge, and pass data between RNBD Module â†?<br /> MCU â†’ Serial Terminal.<br /> This action will occur when STREAM\_OPEN is processed<br /> through the Message Handler. For this example, data typed into<br /> the Serial Terminal will appear on the BLE Phone Application,<br /> and Data sent from the Application will appear on the Serial<br /> Terminal.<br />|
+|<br /> This exmple shows how the data transmitted from a PC serial terminal is written to a smart phone app and the vice versa. The MCU acts as a bridge while passing data between RNBD Module. â†?<br /> MCU â†’ Serial Terminal.<br /> This action will occur when STREAM\_OPEN is processed<br /> through the Message Handler. For this example, data typed into<br /> the Serial Terminal will appear on the BLE Phone Application,<br /> and Data sent from the Application will appear on the Serial<br /> Terminal.<br />|
 
 <br />
 
@@ -505,7 +505,7 @@ This is the END of the Basic Data Exchange Example
 
     <br />
 
-    After Installing open the MBD App and Click on **BLE UART** Sub Apps:
+    After the Installation is complete, open the MBD APP and Click on **BLE UART** Sub Apps:
 
     <br />
 
@@ -513,7 +513,7 @@ This is the END of the Basic Data Exchange Example
 
     <br />
 
-3.  On Selecting PIC32CXBZ scan for available devices to connect. The Application will automatically scan the area for Bluetooth devices within a range. By default, the device should appear as "RNBD451\_xxxx"
+3.  Select **PIC32CXBZ** to scan for available devices to connect. The Application automatically scans the area for Bluetooth devices within a range. By default, the device should appear as "RNBD451\_xxxx"
 
     <br />
 
@@ -535,7 +535,7 @@ This is the END of the Basic Data Exchange Example
 
     <br />
 
-5.  Once Connected with RNBD451\_0EC4 click on Text Mode at bottom of the settings as shown below to initiate the data transfer.
+5.  Once Connected with RNBD451\_0EC4 click **Text Mode** at the bottom of the settings to initiate the data transfer.
 
     <br />
 
@@ -714,7 +714,7 @@ Configuration for PIC Transparent UART was completed click [here](GUID-46C11149-
 
 **Basic Data Exchange:**
 
-|This example shows how an MCU can be programmed to transmit data<br /> to a smart phone over BLE. Here the MCU device will send Periodic<br /> Transmission of a single character when **STREAM\_OPEN** is<br /> processed through the Message Handler.
+|This example shows how a MCU can be programmed to transmit data<br /> to a smart phone over BLE. Here the MCU device will send Periodic<br /> Transmission of a single character when **STREAM\_OPEN** is<br /> processed through the Message Handler.
 
 This indicates to the MCU<br /> & RN487x Module that the application is in a DATA STREAMING mode<br /> of operation; and can expect to hear data over the BLE<br /> connection.\#define DEMO\_PERIODIC\_TRANSMIT\_COUNT<br /> \(10000\)\#define DEMO\_PERIODIC\_CHARACTER \(‘1’\)Are<br /> used in the example can be found \#defined at the top of<br /> rnbd\_example.c.|
 
@@ -744,7 +744,7 @@ This indicates to the MCU<br /> & RN487x Module that the application is in a DAT
 
     <br />
 
-4.  On selecting the "RN487x" device from the list will be ready to connect with RNBD Module once you click on CONNECT Button
+4.  When selecting the "RN487x" device from the list, the device will be ready to connect with the RNBD Module, after you click the **CONNECT** button
 
     <br />
 
@@ -760,7 +760,7 @@ This indicates to the MCU<br /> & RN487x Module that the application is in a DAT
 
     <br />
 
-6.  Click on Microchip Data Service Option and Select the Microchip Data Characteristic and Write Notify Indication to receive the data in Mobile App.
+6.  Click the **Microchip Data Service** option and select **Microchip Data Characteristic** and Write Notify Indication to receive the data in the Mobile App.
 
     <br />
 
@@ -768,7 +768,7 @@ This indicates to the MCU<br /> & RN487x Module that the application is in a DAT
 
     <br />
 
-7.  Select "Listen for notifications" on the application.
+7.  Select **Listen for notifications** on the application.
     -   It may be required to "enable notification" access to the app on the<br /> phone.
 
         Data will begin to Send at a Periodic Rate to the device.
@@ -803,7 +803,7 @@ This is the END of the Basic Data Exchange Example
 
 |Transparent Serial:|
 |-------------------|
-|<br /> This example will demostrat data transmitted from a PC serial<br /> terminal is written to a smart phone app and vice versa. The MCU<br /> device will act as a bridge, and pass data between RNBD Module â†?<br /> MCU â†’ Serial Terminal.<br /> This action will occur when STREAM\_OPEN is processed<br /> through the Message Handler. For this example, data typed into<br /> the Serial Terminal will appear on the BLE Phone Application,<br /> and Data sent from the Application will appear on the Serial<br /> Terminal.<br />|
+|<br /> This example shows how the data transmitted from a PC serial terminal is written to a smart phone app and the vice versa. The MCU acts as a bridge while passing data between RNDB Module â†?<br /> MCU â†’ Serial Terminal.<br /> This action will occur when STREAM\_OPEN is processed<br /> through the Message Handler. For this example, data typed into<br /> the Serial Terminal will appear on the BLE Phone Application,<br /> and Data sent from the Application will appear on the Serial<br /> Terminal.<br />|
 
 <br />
 
@@ -837,7 +837,7 @@ This is the END of the Basic Data Exchange Example
 
     <br />
 
-    Click on the below Scan image to scan the Nearby "RN487x-xxxx"
+    Click **Scan image** to scan the Nearby "RN487x-xxxx"
 
     <br />
 
@@ -948,11 +948,11 @@ iRNBD\_FunctionPtrs\_t is a typedef struct which can be found in<br /> **rnbd\_i
 
 <br />
 
-The driver library itself should not require any modifications or injections by the user;<br /> unless to expand upon the supported command implementations **rnbd.c/h**
+The driver library may not require modifications or injections done by the user unless it expands to the supported command implementations **rnbd.c/h**
 
 **Configurable Module Hardware Requirement\(s\):**
 
-A single UART instance used for communication between MCU and Module:
+The MCU and the module are using a UART to communicate:
 
 <br />
 
