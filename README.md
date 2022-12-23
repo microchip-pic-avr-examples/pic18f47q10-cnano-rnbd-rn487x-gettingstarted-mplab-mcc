@@ -26,9 +26,9 @@
 
 # Introduction<a name="introduction"></a>
 
-The MPLAB® Code Configurator (MCC) RNBD(TBD)/RN487x BLE Modules Library allows to promptly configure the C code-generated software driver, based on the user’s selected API features available in the MCC Library. The Generated Driver code can support the BLE module using a PIC device.
+The MPLAB® Code Configurator (MCC) RNBD(TBD)/[RN487x](https://www.microchip.com/wwwproducts/en/RN4870) BLE Modules Library allows to promptly configure the C code-generated software driver, based on the user’s selected API features available in the MCC Library. The Generated Driver code can support the BLE module using a PIC device.
 
-The library module uses a Graphic User Interface (GUI) provided by the MCC, used to set the configuration, and the custom configurations of the protocol. The Customized C code is generated within the MPLABX project, in a folder named <br /> "MCC Generated Files".
+The library module uses a Graphic User Interface (GUI) provided by the MCC, used to set the configuration, and the custom configurations of the protocol. The Customized C code is generated within the MPLABX project, in a folder named "MCC Generated Files".
 
 This Library uses \(1\) UART, \(1\) GPIO, and DELAY support at minimal.
 
@@ -63,13 +63,13 @@ Refer to the /images folder for source files & max resolution.
 
 # Related Documentation<a name="related-documentation"></a>
 
--   [Microchip Bluetooth](https://www.microchip.com/design-centers/wireless-connectivity/bluetooth)
+-   Microchip Bluetooth \([BLE](https://www.microchip.com/design-centers/wireless-connectivity/bluetooth)\)
 -   [RNBD User Guide\(TBD\)](http://ww1.microchip.com/downloads/en/DeviceDoc/RN4870-71-Bluetooth-Low-Energy-Module-Data-Sheet-DS50002489D.pdf)
 -   [RNBD Data Sheet](http://ww1.microchip.com/downloads/en/DeviceDoc/RN4870-71-Bluetooth-Low-Energy-Module-Data-Sheet-DS50002489D.pdf)
--   [PIC18F47Q10 Product Page](https://www.microchip.com/en-us/product/PIC18F47Q10)
--   [RN Data Sheet](http://ww1.microchip.com/downloads/en/DeviceDoc/RN4870-71-Bluetooth-Low-Energy-Module-Data-Sheet-DS50002489D.pdf)
+-   PIC18F47Q10 Product Page \([PIC18F47Q10](https://www.microchip.com/en-us/product/PIC18F47Q10)\)
+-   RN Data Sheet \([RN4870/1](http://ww1.microchip.com/downloads/en/DeviceDoc/RN4870-71-Bluetooth-Low-Energy-Module-Data-Sheet-DS50002489D.pdf)\)
 
--   [RN User Guide](http://ww1.microchip.com/downloads/en/DeviceDoc/RN4870-71-Bluetooth-Low-Energy-Module-User-Guide-DS50002466C.pdf)
+-   RN User Guide\([RN4870/1](http://ww1.microchip.com/downloads/en/DeviceDoc/RN4870-71-Bluetooth-Low-Energy-Module-User-Guide-DS50002466C.pdf)\)
 
 # Software Used<a name="software-used"></a>
 
@@ -385,7 +385,7 @@ The RNBD451 device can use BT Status indication 1 and BT Status indication 2 pin
 
 5.  Connect the development board of your choice and connect the RNBD to the proper slot\(\) as shown below.
 
-    **Note:** Connect RNBD Click to **Slot 2** as shown in the image below 
+    **Note:** Connect RNBD Click to **Slot 2** as shown in the image below
 
     <br />
 
@@ -411,9 +411,7 @@ The RNBD451 device can use BT Status indication 1 and BT Status indication 2 pin
 
 **Basic Data Exchange:**
 
-This example shows how a MCU can be programmed to transmit data<br /> to a smart phone over BLE. Here the MCU device will send Periodic<br /> Transmission of a single character when **STREAM\_OPEN** is<br /> processed through the Message Handler.
-
-This indicates to the MCU<br /> & RNBD Module that the application is in a DATA STREAMING mode<br /> of operation; and can expect to hear data over the BLE<br /> connection.\#define DEMO\_PERIODIC\_TRANSMIT\_COUNT<br /> \(10000\)\#define DEMO\_PERIODIC\_CHARACTER \(‘1’\)Are<br /> used in the example can be found \#defined at the top of<br /> rnbd\_example.c.
+This example shows how a MCU can be programmed to transmit data to a smart phone over BLE. Here the MCU device will send Periodic Transmission of a single character when **STREAM\_OPEN** is processed through the Message Handler. This indicates to the MCU and RNBD Module that the application is in a DATA STREAMING mode of operation and can expect to hear data over the BLE connection.<br /><br />\#define DEMO\_PERIODIC\_CHARACTER \(‘1’\) are used in the example can be found \#defined at the top of<br /> rnbd\_example.c.|
 
 ![](images/GUID-0C803050-62C5-4E5F-BA14-619E48B5916E-low.png)
 
@@ -487,7 +485,7 @@ This is the END of the Basic Data Exchange Example
 
 |Transparent Serial:|
 |-------------------|
-|<br /> This exmple shows how the data transmitted from a PC serial terminal is written to a smart phone app and the vice versa. The MCU acts as a bridge while passing data between RNBD Module. â†?<br /> MCU â†’ Serial Terminal.<br /> This action will occur when STREAM\_OPEN is processed<br /> through the Message Handler. For this example, data typed into<br /> the Serial Terminal will appear on the BLE Phone Application,<br /> and Data sent from the Application will appear on the Serial<br /> Terminal.<br />|
+|<br /> This example shows how the data transmitted from a PC serial terminal is written to a smart phone app and the vice versa. The MCU acts as a bridge while passing data between RNDB Module <--- MCU ---> Serial Terminal.<br /><br /> This action will occur when STREAM\_OPEN is processed through the Message Handler. For this example, data typed into the Serial Terminal will appear on the BLE Phone Application,and Data sent from the Application will appear on the Serial Terminal.<br />|
 
 <br />
 
@@ -795,7 +793,7 @@ This is the END of the Basic Data Exchange Example
 
 <br />
 
-![](GUID-8E99A785-AE04-48F7-BBD4-7259DC3B5F9B-low.png)
+![](images/GUID-8E99A785-AE04-48F7-BBD4-7259DC3B5F9B-low.png)
 
 <br />
 
@@ -803,7 +801,7 @@ This is the END of the Basic Data Exchange Example
 
 |Transparent Serial:|
 |-------------------|
-|<br /> This example shows how the data transmitted from a PC serial terminal is written to a smart phone app and the vice versa. The MCU acts as a bridge while passing data between RNDB Module â†?<br /> MCU â†’ Serial Terminal.<br /> This action will occur when STREAM\_OPEN is processed<br /> through the Message Handler. For this example, data typed into<br /> the Serial Terminal will appear on the BLE Phone Application,<br /> and Data sent from the Application will appear on the Serial<br /> Terminal.<br />|
+|<br /> This example shows how the data transmitted from a PC serial terminal is written to a smart phone app and the vice versa. The MCU acts as a bridge while passing data between RNDB Module <--- MCU ---> Serial Terminal.<br /><br /> This action will occur when STREAM\_OPEN is processed through the Message Handler. For this example, data typed into the Serial Terminal will appear on the BLE Phone Application,and Data sent from the Application will appear on the Serial Terminal.<br />|
 
 <br />
 
