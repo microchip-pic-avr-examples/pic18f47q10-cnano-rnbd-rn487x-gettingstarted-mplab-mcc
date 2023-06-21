@@ -11,7 +11,7 @@
 */
 
 /*
-© [2022] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -87,7 +87,15 @@ void __interrupt() INTERRUPT_InterruptManager (void)
     // interrupt handler
     if(INTCONbits.PEIE == 1)
     {
-        if(PIE3bits.TX1IE == 1 && PIR3bits.TX1IF == 1)
+        if(PIE3bits.TX2IE == 1 && PIR3bits.TX2IF == 1)
+        {
+            EUSART2_TxDefaultInterruptHandler();
+        } 
+        else if(PIE3bits.RC2IE == 1 && PIR3bits.RC2IF == 1)
+        {
+            EUSART2_RxDefaultInterruptHandler();
+        } 
+        else if(PIE3bits.TX1IE == 1 && PIR3bits.TX1IF == 1)
         {
             EUSART1_TxDefaultInterruptHandler();
         } 

@@ -27,9 +27,8 @@
 */
 
 #include <stdbool.h>
-#include <stdint.h>
-#include "../uart/eusart1.h"
 #include "rnbd_example.h"
+#include "../uart/eusart2.h"
 #include "../rnbd/rnbd_interface.h"
 #include "../rnbd/rnbd.h"
 #include "../system/interrupt.h"
@@ -44,24 +43,17 @@
 static char statusBuffer[MAX_BUFFER_SIZE];    
 
 /**
- * \def DEMO_PERIODIC_TRANSMIT_COUNT
- * This macro provide a definition for a periodic data transmission demostration
- */
-#define DEMO_PERIODIC_TRANSMIT_COUNT           (100)
-/**
- * \def DEMO_PERIODIC_CHARACTER
- * This macro provide a character sent at a periodic rate for demostration
- */
-#define DEMO_PERIODIC_CHARACTER                 ('1')
-/**
  * \ingroup RNBD_Example
- * \brief Example Implmentation for simple Data Exchange Demostration
+ * \brief Example Implmentation of Transparent UART
+ *        This can be connected to a Smart BLE 'Terminal' 
+ *        application for simple data exchange demostration.
  *
+ * For more details, refer RNBD user guide.
  * \return Connected Status
  * \retval true - Connected.
  * \retval false - Not Connected
  */  
-static bool RNBD_Example_BasicDataExchange(void);
+static bool RNBD_Example_TransparentUart(void);
 /**
  * \ingroup RNBD_Example_Run
  * \brief This 'Runs' the example applications While(1) loop
@@ -88,27 +80,6 @@ bool Example_Initialized(void)
     __delay_ms(300);
 
 
-    uint16_t GR_HexByte=0;
-    RNBD_CmdModeEnter();
-    __delay_ms(50);
-    
-    GR_HexByte=RNBD_GetGRCommand();
-    if((GR_HexByte & 0x1000) == 0x0000)
-    {
-        GR_HexByte|= 0x1000;
-        RNBD_FeaturesBitmapSet(GR_HexByte);
-        __delay_ms(50);
-
-        RNBD_CmdReboot();
-        __delay_ms(300);
-    }
-    else
-    {
-        RNBD_DataModeEnter();
-        __delay_ms(50);
-    } 
-
-
     
     if (exampleIsInitialized == true)
     {
@@ -121,7 +92,7 @@ static void RNBD_Example_Run(void)
 {
     while(1)
     {
-        if (true == RNBD_Example_BasicDataExchange())    
+        if (true == RNBD_Example_TransparentUart())
         {
             // Connected
         }
@@ -132,12 +103,9 @@ static void RNBD_Example_Run(void)
     }
 }
 
-static bool RNBD_Example_BasicDataExchange(void)
+static bool RNBD_Example_TransparentUart(void)
 {
-   static uint16_t periodicCounter = 0;
    bool isConnected,isOTAComplete;
-   volatile uint8_t readData;
-   readData = 0;
    isConnected = RNBD_IsConnected();
    isOTAComplete = RNBD_IsOTAComplete();
 
@@ -145,27 +113,22 @@ static bool RNBD_Example_BasicDataExchange(void)
    {
        while (RNBD_isDataReady())
        {
-           readData = RNBD_Read();
-           // Use the readData as desired
+           EUSART2_Write(RNBD_Read());
        }
-       if (periodicCounter == DEMO_PERIODIC_TRANSMIT_COUNT)
+       while (EUSART2_IsRxReady())
        {
-           RNBD.Write(DEMO_PERIODIC_CHARACTER);
-           periodicCounter = 0;
-       }
-       else
-       {
-           periodicCounter++;
-           __delay_ms(1);
-
+           RNBD.Write(EUSART2_Read());
        }
    }
    else
     {
         while(RNBD_isDataReady())
         {
-            // Clear data; Allow ASYNC processor decode
-            readData = RNBD_Read();
+            EUSART2_Write(RNBD_Read());
+        }
+        while (EUSART2_IsRxReady())
+        {
+            RNBD.Write(EUSART2_Read());
         }
     }
 

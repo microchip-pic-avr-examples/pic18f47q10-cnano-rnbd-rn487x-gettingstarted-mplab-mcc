@@ -12,7 +12,7 @@
 */
 
 /*
-© [2022] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -74,10 +74,6 @@ void PIN_MANAGER_Initialize(void)
     WPUE = 0x0;
 
     /**
-    RxyI2C registers
-    */
-
-    /**
     ODx registers
     */
     ODCONA = 0x0;
@@ -99,10 +95,14 @@ void PIN_MANAGER_Initialize(void)
     INLVLx registers
     */
     INLVLA = 0xFF;
-    INLVLB = 0xF6;
-    INLVLC = 0x9F;
+    INLVLB = 0xFF;
+    INLVLC = 0xFF;
     INLVLD = 0xFF;
     INLVLE = 0xF;
+
+   /**
+    RxyI2C | RxyFEAT registers   
+    */
     /**
     PPS registers
     */

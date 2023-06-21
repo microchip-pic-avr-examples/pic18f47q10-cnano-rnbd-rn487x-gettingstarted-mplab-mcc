@@ -12,7 +12,7 @@
 */
 
 /*
-© [2022] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -68,7 +68,7 @@
 #define IO_RB0_SetOpenDrain()       do { ODCONBbits.ODCB0 = 1; } while(0)
 #define IO_RB0_SetAnalogMode()      do { ANSELBbits.ANSELB0 = 1; } while(0)
 #define IO_RB0_SetDigitalMode()     do { ANSELBbits.ANSELB0 = 0; } while(0)
-   
+
 // get/set RB3 aliases
 #define IO_RB3_TRIS                 TRISBbits.TRISB3
 #define IO_RB3_LAT                  LATBbits.LATB3
@@ -88,7 +88,7 @@
 #define IO_RB3_SetOpenDrain()       do { ODCONBbits.ODCB3 = 1; } while(0)
 #define IO_RB3_SetAnalogMode()      do { ANSELBbits.ANSELB3 = 1; } while(0)
 #define IO_RB3_SetDigitalMode()     do { ANSELBbits.ANSELB3 = 0; } while(0)
-   
+
 // get/set RC7 aliases
 #define BT_RST_TRIS                 TRISCbits.TRISC7
 #define BT_RST_LAT                  LATCbits.LATC7
@@ -108,7 +108,7 @@
 #define BT_RST_SetOpenDrain()       do { ODCONCbits.ODCC7 = 1; } while(0)
 #define BT_RST_SetAnalogMode()      do { ANSELCbits.ANSELC7 = 1; } while(0)
 #define BT_RST_SetDigitalMode()     do { ANSELCbits.ANSELC7 = 0; } while(0)
-   
+
 /**
  * @ingroup  pinsdriver
  * @brief GPIO and peripheral I/O initialization

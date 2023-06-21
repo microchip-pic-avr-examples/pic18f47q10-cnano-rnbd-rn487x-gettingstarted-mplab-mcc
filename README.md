@@ -7,6 +7,7 @@
 -   [Related Documentation](#related-documentation)
 -   [Software Used](#software-used)
 -   [Hardware Used](#hardware-used)
+-   [Hardware Setup](#hardware-setup)
 -   [Software Prerequisite](#software-prerequisite)
 -   [Project Setup](#project-setup)
 -   [RNBD451 Set Up and Running Example Application](#rnbd451-set-up-&-running-example-application)
@@ -73,9 +74,9 @@ Refer to the /images folder for source files & max resolution.
 
 # Software Used<a name="software-used"></a>
 
--   MPLAB® X IDE 6.00 or newer \([microchip.com/mplab/mplab-x-ide](http://www.microchip.com/mplab/mplab-x-ide)\)
--   MPLAB® XC8 2.35 or a newer compiler \([microchip.com/mplab/compilers](http://www.microchip.com/mplab/compilers)\)
--   MPLAB® Code Configurator \(MCC\) 5.1.1 or newer \([microchip.com/mplab/mplab-code-configurator](https://www.microchip.com/mplab/mplab-code-configurator)\)
+-   MPLAB® X IDE 6.10 or newer \([microchip.com/mplab/mplab-x-ide](http://www.microchip.com/mplab/mplab-x-ide)\)
+-   MPLAB® XC8 2.41 or a newer compiler \([microchip.com/mplab/compilers](http://www.microchip.com/mplab/compilers)\)
+-   MPLAB® Code Configurator \(MCC\) 5.3.7 or newer \([microchip.com/mplab/mplab-code-configurator](https://www.microchip.com/mplab/mplab-code-configurator)\)
 -   MPLAB® Code Configurator \(MCC\) Device Libraries PIC10 / PIC12 / PIC16 / PIC18 MCUs \([microchip.com/mplab/mplab-code-configurator](https://www.microchip.com/mplab/mplab-code-configurator)\)
 -   MPLAB® Code Configurator \(MCC\) Device Libraries PIC® MCUs \([microchip.com/mplab/mplab-code-configurator](https://www.microchip.com/mplab/mplab-code-configurator)\)
 -   Microchip PIC18F-Q\_DFP Series Device Support \(1.14.223\) or newer \([packs.download.microchip.com/](https://packs.download.microchip.com/)\)
@@ -89,6 +90,37 @@ Refer to the /images folder for source files & max resolution.
 -   [RN Data Sheet](http://ww1.microchip.com/downloads/en/DeviceDoc/RN4870-71-Bluetooth-Low-Energy-Module-Data-Sheet-DS50002489D.pdf)
 
 -   [RN User Guide](http://ww1.microchip.com/downloads/en/DeviceDoc/RN4870-71-Bluetooth-Low-Energy-Module-User-Guide-DS50002466C.pdf)
+# Hardware Setup<a name="hardware-setup"></a>
+## RNBD451 PIN Mapping & Hardware Setup
+-   Pin Mapping Table between MCU & RNBD451 Click
+    <br />
+    |S.no|PIN Functionality|PIC|RNBD451 Click|
+    |----|-----------------|---|----------|
+    |1|Receive \(RxD\)|RB3|Tx|
+    |2|Transmit \(TxD\)|RB0|Rx|
+    |3|BT\_RST|RC7|RST|
+    <br />
+-   Connect the development board of your choice and connect the RNBD451 to the proper slot\(\) as shown below.
+    **Note:** Connect RNBD451 Click to **Slot 2** as shown in the image below
+    <br />
+    ![](images/GUID-620507F8-A6DC-4C9A-B05C-DDBAAD42D3CA-low.png)
+    <br />
+    **Important:** The slot was decided based on the UART Instances which were configured for this example (**PIN Mapping between MCU & RNBD451 Click**\).
+## RN487x PIN Mapping & Hardware Setup
+-   Pin Mapping Table between MCU & RN487x Click
+    <br />
+    |S.no|PIN Functionality|PIC|RN487x Click|
+    |----|-----------------|---|------------|
+    |1|Receive \(RxD\)|RB3|Tx|
+    |2|Transmit \(TxD\)|RB0|Rx|
+    |3|BT\_RST|RC7|RST|
+    <br />
+-   Connect the development board of your choice and connect the RN487x to the proper slot\(\) as shown below.
+    **Note:** Connect RN487x Click to **Slot 2** as shown in below image
+    <br />
+    ![](images/GUID-A52CEC62-AA5A-441A-A17E-8551FAF5C9ED-low.png)
+    <br />
+    **Important:** Slot was decided based on the UART Instances which was configured for this example application \(**PIN Mapping between MCU & RN487x Click**\).
 
 # Software Prerequisite<a name="software-prerequisite"></a>
 
@@ -466,7 +498,7 @@ This example shows how a MCU can be programmed to transmit data to a smart phone
 
             ![](images/GUID-C5223277-D33D-4366-8CA4-124D340F0554-low.png)
 
-            After Enabling the<br /> Notify/Indicate Toggle Button Mobile App can read the data<br /> 31\(Hex Value\) which was sent from RNBD Module.
+            After Enabling the<br /> Notify/Indicate Toggle Button Mobile App can read the data<br /> 31\(Hex Value for '1'\) which was sent from RNBD Module.
 
             ![](images/GUID-83D3CD62-CA8C-4C6C-88AF-CA15728E6392-low.png)
 
@@ -673,7 +705,7 @@ Configuration for PIC Transparent UART was completed click [here](GUID-46C11149-
 
     <br />
 
-4.  Pin Mapping Table between MCU & RN4871 Click
+4.  Pin Mapping Table between MCU & RN487x Click
 
     <br />
 
@@ -687,7 +719,7 @@ Configuration for PIC Transparent UART was completed click [here](GUID-46C11149-
 
 5.  Connect the development board of your choice and connect the RN487x to the proper slot\(\) as shown below.
 
-    **Note:** Connect RN4871 Click to **Slot 2** as shown in below image
+    **Note:** Connect RN487x Click to **Slot 2** as shown in below image
 
     <br />
 
@@ -695,7 +727,7 @@ Configuration for PIC Transparent UART was completed click [here](GUID-46C11149-
 
     <br />
 
-    **Important:** Slot was decided based on the UART Instances which was configured for this example application \(**PIN Mapping between MCU & RN4871 Click**\).
+    **Important:** Slot was decided based on the UART Instances which was configured for this example application \(**PIN Mapping between MCU & RN487x Click**\).
 
 6.  Build the Generated Project:
 
@@ -781,7 +813,7 @@ This indicates to the MCU<br /> & RN487x Module that the application is in a DAT
 
             <br />
 
-            After Enabling the Notify/Indicate Toggle Button Mobile<br /> App can read the data 31\(Hex Value\) which was sent from<br /> RN487x Module.
+            After Enabling the Notify/Indicate Toggle Button Mobile<br /> App can read the data 31\(Hex Value for '1'\) which was sent from<br /> RN487x Module.
 
             ![](images/GUID-9A94A4DF-BEB9-48A5-B958-CDDC2C296ED7-low.png)
 

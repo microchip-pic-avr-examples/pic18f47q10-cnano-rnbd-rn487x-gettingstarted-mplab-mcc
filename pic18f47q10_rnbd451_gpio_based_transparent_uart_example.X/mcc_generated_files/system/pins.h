@@ -12,7 +12,7 @@
 */
 
 /*
-© [2022] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -68,7 +68,7 @@
 #define IO_RB0_SetOpenDrain()       do { ODCONBbits.ODCB0 = 1; } while(0)
 #define IO_RB0_SetAnalogMode()      do { ANSELBbits.ANSELB0 = 1; } while(0)
 #define IO_RB0_SetDigitalMode()     do { ANSELBbits.ANSELB0 = 0; } while(0)
-   
+
 // get/set RB3 aliases
 #define IO_RB3_TRIS                 TRISBbits.TRISB3
 #define IO_RB3_LAT                  LATBbits.LATB3
@@ -88,7 +88,7 @@
 #define IO_RB3_SetOpenDrain()       do { ODCONBbits.ODCB3 = 1; } while(0)
 #define IO_RB3_SetAnalogMode()      do { ANSELBbits.ANSELB3 = 1; } while(0)
 #define IO_RB3_SetDigitalMode()     do { ANSELBbits.ANSELB3 = 0; } while(0)
-   
+
 // get/set RC5 aliases
 #define BT_STATUS_IND_2_TRIS                 TRISCbits.TRISC5
 #define BT_STATUS_IND_2_LAT                  LATCbits.LATC5
@@ -108,7 +108,7 @@
 #define BT_STATUS_IND_2_SetOpenDrain()       do { ODCONCbits.ODCC5 = 1; } while(0)
 #define BT_STATUS_IND_2_SetAnalogMode()      do { ANSELCbits.ANSELC5 = 1; } while(0)
 #define BT_STATUS_IND_2_SetDigitalMode()     do { ANSELCbits.ANSELC5 = 0; } while(0)
-   
+
 // get/set RC6 aliases
 #define BT_STATUS_IND_1_TRIS                 TRISCbits.TRISC6
 #define BT_STATUS_IND_1_LAT                  LATCbits.LATC6
@@ -128,7 +128,7 @@
 #define BT_STATUS_IND_1_SetOpenDrain()       do { ODCONCbits.ODCC6 = 1; } while(0)
 #define BT_STATUS_IND_1_SetAnalogMode()      do { ANSELCbits.ANSELC6 = 1; } while(0)
 #define BT_STATUS_IND_1_SetDigitalMode()     do { ANSELCbits.ANSELC6 = 0; } while(0)
-   
+
 // get/set RC7 aliases
 #define BT_RST_TRIS                 TRISCbits.TRISC7
 #define BT_RST_LAT                  LATCbits.LATC7
@@ -148,7 +148,7 @@
 #define BT_RST_SetOpenDrain()       do { ODCONCbits.ODCC7 = 1; } while(0)
 #define BT_RST_SetAnalogMode()      do { ANSELCbits.ANSELC7 = 1; } while(0)
 #define BT_RST_SetDigitalMode()     do { ANSELCbits.ANSELC7 = 0; } while(0)
-   
+
 // get/set RD0 aliases
 #define IO_RD0_TRIS                 TRISDbits.TRISD0
 #define IO_RD0_LAT                  LATDbits.LATD0
@@ -168,7 +168,7 @@
 #define IO_RD0_SetOpenDrain()       do { ODCONDbits.ODCD0 = 1; } while(0)
 #define IO_RD0_SetAnalogMode()      do { ANSELDbits.ANSELD0 = 1; } while(0)
 #define IO_RD0_SetDigitalMode()     do { ANSELDbits.ANSELD0 = 0; } while(0)
-   
+
 // get/set RD1 aliases
 #define IO_RD1_TRIS                 TRISDbits.TRISD1
 #define IO_RD1_LAT                  LATDbits.LATD1
@@ -188,7 +188,7 @@
 #define IO_RD1_SetOpenDrain()       do { ODCONDbits.ODCD1 = 1; } while(0)
 #define IO_RD1_SetAnalogMode()      do { ANSELDbits.ANSELD1 = 1; } while(0)
 #define IO_RD1_SetDigitalMode()     do { ANSELDbits.ANSELD1 = 0; } while(0)
-   
+
 /**
  * @ingroup  pinsdriver
  * @brief GPIO and peripheral I/O initialization

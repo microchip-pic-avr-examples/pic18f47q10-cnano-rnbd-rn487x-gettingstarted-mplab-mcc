@@ -12,7 +12,7 @@
 */
 
 /*
-© [2022] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -52,7 +52,7 @@ void PIN_MANAGER_Initialize(void)
     TRISA = 0xFF;
     TRISB = 0xFE;
     TRISC = 0x7F;
-    TRISD = 0xFF;
+    TRISD = 0xFE;
     TRISE = 0x7;
 
     /**
@@ -60,8 +60,8 @@ void PIN_MANAGER_Initialize(void)
     */
     ANSELA = 0xFF;
     ANSELB = 0xF6;
-    ANSELC = 0x9F;
-    ANSELD = 0xFF;
+    ANSELC = 0xFF;
+    ANSELD = 0xFC;
     ANSELE = 0x7;
 
     /**
@@ -72,10 +72,6 @@ void PIN_MANAGER_Initialize(void)
     WPUC = 0x80;
     WPUD = 0x0;
     WPUE = 0x0;
-
-    /**
-    RxyI2C registers
-    */
 
     /**
     ODx registers
@@ -91,22 +87,28 @@ void PIN_MANAGER_Initialize(void)
     */
     SLRCONA = 0xFF;
     SLRCONB = 0xF6;
-    SLRCONC = 0x9F;
-    SLRCOND = 0xFF;
+    SLRCONC = 0xFF;
+    SLRCOND = 0xFC;
     SLRCONE = 0x7;
 
     /**
     INLVLx registers
     */
     INLVLA = 0xFF;
-    INLVLB = 0xF6;
-    INLVLC = 0x9F;
+    INLVLB = 0xFF;
+    INLVLC = 0xFF;
     INLVLD = 0xFF;
     INLVLE = 0xF;
+
+   /**
+    RxyI2C | RxyFEAT registers   
+    */
     /**
     PPS registers
     */
+    RX2PPS = 0x19; //RD1->EUSART2:RX2;
     RX1PPS = 0xB; //RB3->EUSART1:RX1;
+    RD0PPS = 0x0B;  //RD0->EUSART2:TX2;
     RB0PPS = 0x09;  //RB0->EUSART1:TX1;
 
    /**

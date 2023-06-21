@@ -11,7 +11,7 @@
 */
 
 /*
-© [2022] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -32,7 +32,6 @@
 */
 #include "mcc_generated_files/system/system.h"
 #include "mcc_generated_files/examples/rn487x_example.h"
-
 /*
     Main application
 */

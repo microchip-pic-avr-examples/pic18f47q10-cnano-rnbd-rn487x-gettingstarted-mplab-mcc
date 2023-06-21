@@ -10,7 +10,7 @@
  * @version RNBD Driver Version  2.0.0
 */
 /*
-© [2022] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -70,6 +70,55 @@ static void RNBD_SystemModeSet(RNBD_SYSTEM_MODES_t mode);
  */
 static void RNBD_MessageHandler(char* message);
 
+/*****************************************************
+*   *OPTIONAL* APPLICATION MESSAGE FORMATTING API(s)
+******************************************************/  
+/**
+ * @ingroup rnbd_interface
+ * @enum RNBD_MESSAGE_TYPE
+ * @brief Enum of the MESSAGE TYPES supported in Driver Example(s)
+ */
+typedef enum 
+{
+    DISCONNECT_MSG  = 0,
+    STREAM_OPEN_MSG = 1,
+    GENERAL_MSG     = 2,
+}RNBD_MESSAGE_TYPE;
+/**
+ * @ingroup rnbd_interface
+ * @def GENERAL_PRINT_SIZE_LIMIT
+ * This macro provide a definition used to process 
+ */
+#define GENERAL_PRINT_SIZE_LIMIT        (80)
+/**
+ * @ingroup rnbd_interface
+ * @brief Prints the START Message "<<< " for UART_CDC
+ * @param none
+ * @return none
+ */
+static inline void RNBD_PrintMessageStart(void);
+/**
+ * @ingroup rnbd_interface
+ * @brief Prints the END Message ">>>\r\n" for UART_CDC
+ * @param none
+ * @return none
+ */
+static inline void RNBD_PrintMessageEnd(void);
+/**
+ * @ingroup rnbd_interface
+ * @brief Prints the Indicator [ or ] to UART_CDC
+ *        [ - Disconnected | ] - Connected
+ * @param none
+ * @return none
+ */
+static inline void RNBD_PrintIndicatorCharacters(RNBD_MESSAGE_TYPE messageType);
+/**
+ * @ingroup rnbd_interface
+ * @brief This API prints *Optional Application* Messages
+ * @param none
+ * @return none
+ */
+static inline void RNBD_PrintMessage(char* passedMessage);
 
 /*****************************************************
 *   Driver Instance Declaration(s) API(s)
@@ -127,28 +176,76 @@ static void RNBD_SystemModeSet(RNBD_SYSTEM_MODES_t mode)
     // Implement desired support code for RX Indicator
 }
 
+/*****************************************************
+*   *Optional* Message Formatting Private API(s)
+******************************************************/  
+
+static inline void RNBD_PrintMessageStart(void)
+{
+    EUSART2_Write('<');
+    EUSART2_Write('<');
+    EUSART2_Write('<');
+    EUSART2_Write(' ');
+}
+
+static inline void RNBD_PrintMessageEnd(void)
+{
+    EUSART2_Write(' ');
+    EUSART2_Write('>');
+    EUSART2_Write('>');
+    EUSART2_Write('>');
+    EUSART2_Write(' ');
+    EUSART2_Write('\r');
+    EUSART2_Write('\n');
+}
+
+static inline void RNBD_PrintIndicatorCharacters(RNBD_MESSAGE_TYPE messageType)
+{
+    if (DISCONNECT_MSG == messageType)
+    {
+        EUSART2_Write('[');
+    }
+    else if (STREAM_OPEN_MSG == messageType)
+    {
+        EUSART2_Write(']');
+    }
+    else
+    {
+
+    }
+}
+
+static inline void RNBD_PrintMessage(char* passedMessage)
+{
+    char printCharacter [GENERAL_PRINT_SIZE_LIMIT];
+	uint8_t messageIndex;
+	
+    strcpy(printCharacter, passedMessage);
+    for (messageIndex = 0; messageIndex < strlen(passedMessage); messageIndex++)
+    {
+        EUSART2_Write(printCharacter[messageIndex]);  
+    }
+}
 
 static void RNBD_MessageHandler(char* message)
 {
 
-    int BT_Status_Ind1 = BT_STATUS_IND_1_GetValue();
-    int BT_Status_Ind2 = BT_STATUS_IND_2_GetValue(); 
+    RNBD_MESSAGE_TYPE messageType;
+    RNBD_PrintMessageStart();
 
-    if ((!BT_Status_Ind1 && !BT_Status_Ind2) || (BT_Status_Ind1 && !BT_Status_Ind2))
+
+    if (strstr(message, "DISCONNECT"))
     {
+        messageType = DISCONNECT_MSG;
         connected = false;
         OTAComplete = false;
     }
-    else if (BT_Status_Ind1 && BT_Status_Ind2)
+    else if (strstr(message, "STREAM_OPEN"))
     {
+        messageType = STREAM_OPEN_MSG;
         connected = true;
     }
-    else
-    {
-        // Left Intentionally Blank: For General Messages
-    }
-
-    if (strstr(message, "OTA_REQ"))
+    else if (strstr(message, "OTA_REQ"))
     {
         OTAComplete = true;
         RNBD.Write('\r');
@@ -165,7 +262,11 @@ static void RNBD_MessageHandler(char* message)
         RNBD.Write('\r');
         RNBD.Write('\n');
     }
-
-
-
+    else
+    {
+        messageType = GENERAL_MSG;
+    }
+    RNBD_PrintMessage(message);
+    RNBD_PrintMessageEnd();
+    RNBD_PrintIndicatorCharacters(messageType);
 }

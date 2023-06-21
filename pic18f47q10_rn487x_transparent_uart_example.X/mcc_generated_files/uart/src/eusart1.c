@@ -22,7 +22,7 @@
 */
 
 /*
-© [2022] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -108,7 +108,7 @@ void EUSART1_Initialize(void)
     EUSART1_SetTxInterruptHandler(EUSART1_Transmit_ISR);
     // Set the EUSART1 module to the options selected in the user interface.
 
-    // ABDEN disabled; WUE disabled; BRG16 16bit_generator; SCKP Non-Inverted; ABDOVF no_overflow; 
+    // ABDEN disabled; WUE disabled; BRG16 16bit_generator; SCKP Non-Inverted; 
     BAUD1CON = 0x48;
 
     // ADDEN disabled; CREN enabled; SREN disabled; RX9 8-bit; SPEN enabled; 
