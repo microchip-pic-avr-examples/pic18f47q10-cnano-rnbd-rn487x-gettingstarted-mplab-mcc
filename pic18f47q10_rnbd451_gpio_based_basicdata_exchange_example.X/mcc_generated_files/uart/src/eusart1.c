@@ -1,24 +1,13 @@
 /**
-  EUSART1 Generated Driver File
-
-  @Company
-    Microchip Technology Inc.
-
-  @File Name
-    eusart1.c
-
-  @Summary
-    This is the generated driver implementation file for the EUSART1 driver using CCL
-
-  @Description
-    This source file provides APIs for EUSART1.
-    Generation Information :
-        Product Revision  :  CCL - 1.8.2
-        Device            :  PIC18F47Q43
-        Driver Version    :  2.1.0
-    The generated drivers are tested against the following:
-        Compiler          :  XC8 v2.2
-        MPLAB 	          :  Standalone
+ * EUSART1 Generated Driver API Header File
+ * 
+ * @file eusart1.c
+ * 
+ * @ingroup eusart1
+ * 
+ * @brief This is the generated driver implementation file for the EUSART1 driver using CCL
+ *
+ * @version EUSART1 Driver Version 3.0.0
 */
 
 /*
@@ -47,90 +36,108 @@
 */
 #include "../eusart1.h"
 
-const struct UART_INTERFACE EUSART1_Interface = {
-  .Initialize = EUSART1_Initialize,
-  .Write = EUSART1_Write,
-  .Read = EUSART1_Read,
-  .RxCompleteCallbackRegister = EUSART1_SetRxInterruptHandler,
-  .TxCompleteCallbackRegister = EUSART1_SetTxInterruptHandler,
-  .ErrorCallbackRegister = EUSART1_SetErrorHandler,
-  .FramingErrorCallbackRegister = EUSART1_SetFramingErrorHandler,
-  .OverrunErrorCallbackRegister = EUSART1_SetOverrunErrorHandler,
-  .ParityErrorCallbackRegister = NULL,
-  .ChecksumErrorCallbackRegister = NULL,
-  .IsRxReady = EUSART1_IsRxReady,
-  .IsTxReady = EUSART1_IsTxReady,
-  .IsTxDone = EUSART1_IsTxDone
-  };
-
 /**
   Section: Macro Declarations
 */
 
-#define EUSART1_TX_BUFFER_SIZE 8
-#define EUSART1_RX_BUFFER_SIZE 8
+#define EUSART1_TX_BUFFER_SIZE (64) //buffer size should be 2^n
+#define EUSART1_TX_BUFFER_MASK (EUSART1_TX_BUFFER_SIZE - 1) 
+
+#define EUSART1_RX_BUFFER_SIZE (64) //buffer size should be 2^n
+#define EUSART1_RX_BUFFER_MASK (EUSART1_RX_BUFFER_SIZE - 1)
 
 /**
-  Section: Global Variables
+  Section: Driver Interface
+ */
+
+const uart_drv_interface_t UART1 = {
+    .Initialize = &EUSART1_Initialize,
+    .Deinitialize = &EUSART1_Deinitialize,
+    .Read = &EUSART1_Read,
+    .Write = &EUSART1_Write,
+    .IsRxReady = &EUSART1_IsRxReady,
+    .IsTxReady = &EUSART1_IsTxReady,
+    .IsTxDone = &EUSART1_IsTxDone,
+    .TransmitEnable = &EUSART1_TransmitEnable,
+    .TransmitDisable = &EUSART1_TransmitDisable,
+    .AutoBaudSet = &EUSART1_AutoBaudSet,
+    .AutoBaudQuery = &EUSART1_AutoBaudQuery,
+    .BRGCountSet = NULL,
+    .BRGCountGet = NULL,
+    .BaudRateSet = NULL,
+    .BaudRateGet = NULL,
+    .AutoBaudEventEnableGet = NULL,
+    .ErrorGet = &EUSART1_ErrorGet,
+    .TxCompleteCallbackRegister = &EUSART1_TxCompleteCallbackRegister,
+    .RxCompleteCallbackRegister = &EUSART1_RxCompleteCallbackRegister,
+    .TxCollisionCallbackRegister = NULL,
+    .FramingErrorCallbackRegister = &EUSART1_FramingErrorCallbackRegister,
+    .OverrunErrorCallbackRegister = &EUSART1_OverrunErrorCallbackRegister,
+    .ParityErrorCallbackRegister = NULL,
+    .EventCallbackRegister = NULL,
+};
+
+/**
+  Section: EUSART1 variables
 */
-volatile uint8_t eusart1TxHead = 0;
-volatile uint8_t eusart1TxTail = 0;
-volatile uint8_t eusart1TxBuffer[EUSART1_TX_BUFFER_SIZE];
+static volatile uint8_t eusart1TxHead = 0;
+static volatile uint8_t eusart1TxTail = 0;
+static volatile uint8_t eusart1TxBuffer[EUSART1_TX_BUFFER_SIZE];
 volatile uint8_t eusart1TxBufferRemaining;
 
-volatile uint8_t eusart1RxHead = 0;
-volatile uint8_t eusart1RxTail = 0;
-volatile uint8_t eusart1RxBuffer[EUSART1_RX_BUFFER_SIZE];
-volatile eusart1_status_t eusart1RxStatusBuffer[EUSART1_RX_BUFFER_SIZE];
+static volatile uint8_t eusart1RxHead = 0;
+static volatile uint8_t eusart1RxTail = 0;
+static volatile uint8_t eusart1RxBuffer[EUSART1_RX_BUFFER_SIZE];
+static volatile eusart1_status_t eusart1RxStatusBuffer[EUSART1_RX_BUFFER_SIZE];
 volatile uint8_t eusart1RxCount;
+
 volatile eusart1_status_t eusart1RxLastError;
 
 /**
   Section: EUSART1 APIs
 */
-void (*EUSART1_TxDefaultInterruptHandler)(void);
-void (*EUSART1_RxDefaultInterruptHandler)(void);
 
+void (*EUSART1_TxInterruptHandler)(void);
+void (*EUSART1_RxInterruptHandler)(void);
 void (*EUSART1_FramingErrorHandler)(void);
 void (*EUSART1_OverrunErrorHandler)(void);
-void (*EUSART1_ErrorHandler)(void);
 
-void EUSART1_DefaultFramingErrorHandler(void);
-void EUSART1_DefaultOverrunErrorHandler(void);
-void EUSART1_DefaultErrorHandler(void);
+static void EUSART1_DefaultFramingErrorCallback(void);
+static void EUSART1_DefaultOverrunErrorCallback(void);
+
+void EUSART1_TransmitISR (void);
+void EUSART1_ReceiveISR(void);
+
+
+/**
+  Section: EUSART1  APIs
+*/
 
 void EUSART1_Initialize(void)
 {
-    // disable interrupts before changing states
-    PIE3bits.RC1IE = 0;
-    EUSART1_SetRxInterruptHandler(EUSART1_Receive_ISR);
-    PIE3bits.TX1IE = 0;
-    EUSART1_SetTxInterruptHandler(EUSART1_Transmit_ISR);
+    PIE3bits.RC1IE = 0;   
+    EUSART1_RxCompleteCallbackRegister(EUSART1_ReceiveISR);  
+
+    PIE3bits.TX1IE = 0; 
+    EUSART1_TxCompleteCallbackRegister(EUSART1_TransmitISR);
+
     // Set the EUSART1 module to the options selected in the user interface.
 
-    // ABDEN disabled; WUE disabled; BRG16 16bit_generator; SCKP Non-Inverted; 
-    BAUD1CON = 0x48;
+    //ABDEN disabled; WUE disabled; BRG16 16bit_generator; SCKP Non-Inverted; 
+    BAUD1CON = 0x48; 
+    //ADDEN disabled; CREN enabled; SREN disabled; RX9 8-bit; SPEN enabled; 
+    RC1STA = 0x90; 
+    //TX9D 0x0; BRGH hi_speed; SENDB sync_break_complete; SYNC asynchronous; TXEN enabled; TX9 8-bit; CSRC client; 
+    TX1STA = 0x26; 
+    //SPBRGL 68; 
+    SP1BRGL = 0x44; 
+    //SPBRGH 0; 
+    SP1BRGH = 0x0; 
 
-    // ADDEN disabled; CREN enabled; SREN disabled; RX9 8-bit; SPEN enabled; 
-    RC1STA = 0x90;
+    EUSART1_FramingErrorCallbackRegister(EUSART1_DefaultFramingErrorCallback);
+    EUSART1_OverrunErrorCallbackRegister(EUSART1_DefaultOverrunErrorCallback);
+    eusart1RxLastError.status = 0;  
 
-    // TX9D 0x0; BRGH hi_speed; SENDB sync_break_complete; SYNC asynchronous; TXEN enabled; TX9 8-bit; CSRC client; 
-    TX1STA = 0x26;
-
-    // SPBRGL 68; 
-    SP1BRGL = 0x44;
-
-    // SPBRGH 0; 
-    SP1BRGH = 0x0;
-
-
-    EUSART1_SetFramingErrorHandler(EUSART1_DefaultFramingErrorHandler);
-    EUSART1_SetOverrunErrorHandler(EUSART1_DefaultOverrunErrorHandler);
-    EUSART1_SetErrorHandler(EUSART1_DefaultErrorHandler);
-
-    eusart1RxLastError.status = 0;
-
-    // initializing the driver state
     eusart1TxHead = 0;
     eusart1TxTail = 0;
     eusart1TxBufferRemaining = sizeof(eusart1TxBuffer);
@@ -139,18 +146,107 @@ void EUSART1_Initialize(void)
     eusart1RxTail = 0;
     eusart1RxCount = 0;
 
-    // enable receive interrupt
+    PIE3bits.RC1IE = 1; 
+}
+
+void EUSART1_Deinitialize(void)
+{
+    PIE3bits.RC1IE = 0;    
+    PIE3bits.TX1IE = 0; 
+    BAUD1CON = 0x00;
+    RC1STA = 0x00;
+    TX1STA = 0x00;
+    SP1BRGL = 0x00;
+    SP1BRGH = 0x00;
+}
+
+inline void EUSART1_Enable(void)
+{
+    RC1STAbits.SPEN = 1;
+
+}
+
+inline void EUSART1_Disable(void)
+{
+    RC1STAbits.SPEN = 0;
+}
+
+
+inline void EUSART1_TransmitEnable(void)
+{
+    TX1STAbits.TXEN = 1;
+}
+
+inline void EUSART1_TransmitDisable(void)
+{
+    TX1STAbits.TXEN = 0;
+}
+
+inline void EUSART1_ReceiveEnable(void)
+{
+    RC1STAbits.CREN = 1;
+}
+
+inline void EUSART1_ReceiveDisable(void)
+{
+    RC1STAbits.CREN = 0;
+}
+
+inline void EUSART1_SendBreakControlEnable(void)
+{
+    TX1STAbits.SENDB = 1;
+}
+
+inline void EUSART1_SendBreakControlDisable(void)
+{
+    TX1STAbits.SENDB = 0;
+}
+
+inline void EUSART1_AutoBaudSet(bool enable)
+{
+    if(enable)
+    {
+        BAUD1CONbits.ABDEN = 1;
+    }
+    else
+    {
+       BAUD1CONbits.ABDEN = 0; 
+    }
+}
+
+inline bool EUSART1_AutoBaudQuery(void)
+{
+return (bool)(!BAUD1CONbits.ABDEN);
+}
+
+inline bool EUSART1_IsAutoBaudDetectOverflow(void)
+{
+    return (bool)BAUD1CONbits.ABDOVF; 
+}
+
+inline void EUSART1_AutoBaudDetectOverflowReset(void)
+{
+    BAUD1CONbits.ABDOVF = 0; 
+}
+
+inline void EUSART1_TransmitInterruptEnable(void)
+{
+    PIE3bits.TX1IE = 1;
+
+}
+
+inline void EUSART1_TransmitInterruptDisable(void)
+{ 
+    PIE3bits.TX1IE = 0; 
+}
+
+inline void EUSART1_ReceiveInterruptEnable(void)
+{
     PIE3bits.RC1IE = 1;
 }
-
-bool EUSART1_IsTxReady(void)
+inline void EUSART1_ReceiveInterruptDisable(void)
 {
-    return (eusart1TxBufferRemaining ? true : false);
-}
-
-bool EUSART1_is_tx_ready(void)
-{
-    return EUSART1_IsTxReady();
+    PIE3bits.RC1IE = 0; 
 }
 
 bool EUSART1_IsRxReady(void)
@@ -158,9 +254,9 @@ bool EUSART1_IsRxReady(void)
     return (eusart1RxCount ? true : false);
 }
 
-bool EUSART1_is_rx_ready(void)
-{    
-    return EUSART1_IsRxReady();
+bool EUSART1_IsTxReady(void)
+{
+    return (eusart1TxBufferRemaining ? true : false);
 }
 
 bool EUSART1_IsTxDone(void)
@@ -168,77 +264,110 @@ bool EUSART1_IsTxDone(void)
     return TX1STAbits.TRMT;
 }
 
-bool EUSART1_is_tx_done(void)
+size_t EUSART1_ErrorGet(void)
 {
-    return EUSART1_IsTxDone();
-}
-
-eusart1_status_t EUSART1_GetLastStatus(void){
-    return eusart1RxLastError;
-}
-
-eusart1_status_t EUSART1_get_last_status(void){
-    return EUSART1_GetLastStatus();
+    eusart1RxLastError.status = eusart1RxStatusBuffer[(eusart1RxTail + 1) & EUSART1_RX_BUFFER_MASK].status;
+    return eusart1RxLastError.status;
 }
 
 uint8_t EUSART1_Read(void)
 {
     uint8_t readValue  = 0;
+    uint8_t tempRxTail;
     
-    while(0 == eusart1RxCount)
-    {
-    }
+    readValue = eusart1RxBuffer[eusart1RxTail];
+
+    tempRxTail = (eusart1RxTail + 1) & EUSART1_RX_BUFFER_MASK; // Buffer size of RX should be in the 2^n
+    
+    eusart1RxTail = tempRxTail;
 
     eusart1RxLastError = eusart1RxStatusBuffer[eusart1RxTail];
+    
 
-    readValue = eusart1RxBuffer[eusart1RxTail++];
-    if(sizeof(eusart1RxBuffer) <= eusart1RxTail)
+    PIE3bits.RC1IE = 0; 
+    if(eusart1RxCount != 0)
     {
-        eusart1RxTail = 0;
+        eusart1RxCount--;
     }
-    PIE3bits.RC1IE = 0;
-    eusart1RxCount--;
     PIE3bits.RC1IE = 1;
-
     return readValue;
+}
+
+void EUSART1_ReceiveISR(void)
+{
+    uint8_t regValue;
+	uint8_t tempRxHead;
+
+    // use this default receive interrupt handler code
+    eusart1RxStatusBuffer[eusart1RxHead].status = 0;
+
+    if(RC1STAbits.OERR)
+    {
+        eusart1RxStatusBuffer[eusart1RxHead].oerr = 1;
+        if(NULL != EUSART1_OverrunErrorHandler)
+        {
+            EUSART1_OverrunErrorHandler();
+        }   
+    }   
+    if(RC1STAbits.FERR)
+    {
+        eusart1RxStatusBuffer[eusart1RxHead].ferr = 1;
+        if(NULL != EUSART1_FramingErrorHandler)
+        {
+            EUSART1_FramingErrorHandler();
+        }   
+    } 
+    
+    regValue = RC1REG;
+    
+    tempRxHead = (eusart1RxHead + 1) & EUSART1_RX_BUFFER_MASK;// Buffer size of RX should be in the 2^n
+    if (tempRxHead == eusart1RxTail) 
+    {
+		// ERROR! Receive buffer overflow 
+	} 
+    else
+    {
+        eusart1RxBuffer[eusart1RxHead] = regValue;
+		eusart1RxHead = tempRxHead;
+		eusart1RxCount++;
+	}   
 }
 
 void EUSART1_Write(uint8_t txData)
 {
-    while(0 == eusart1TxBufferRemaining)
-    {
-    }
-
+    uint8_t tempTxHead;
+    
     if(0 == PIE3bits.TX1IE)
     {
         TX1REG = txData;
     }
+    else if(eusart1TxBufferRemaining) // check if at least one byte place is available in TX buffer
+    {
+       eusart1TxBuffer[eusart1TxHead] = txData;
+       tempTxHead = (eusart1TxHead + 1) & EUSART1_TX_BUFFER_MASK;
+       
+       eusart1TxHead = tempTxHead;
+       PIE3bits.TX1IE = 0; //Critical value decrement
+       eusart1TxBufferRemaining--; // one less byte remaining in TX buffer
+    }
     else
     {
-        PIE3bits.TX1IE = 0;
-        eusart1TxBuffer[eusart1TxHead++] = txData;
-        if(sizeof(eusart1TxBuffer) <= eusart1TxHead)
-        {
-            eusart1TxHead = 0;
-        }
-        eusart1TxBufferRemaining--;
+        //overflow condition; eusart1TxBufferRemaining is 0 means TX buffer is full
     }
     PIE3bits.TX1IE = 1;
 }
 
-
-void EUSART1_Transmit_ISR(void)
+void EUSART1_TransmitISR(void)
 {
-
-    // add your EUSART1 interrupt custom code
-    if(sizeof(eusart1TxBuffer) > eusart1TxBufferRemaining)
+    uint8_t tempTxTail;
+    // use this default transmit interrupt handler code
+    if(sizeof(eusart1TxBuffer) > eusart1TxBufferRemaining) // check if all data is transmitted
     {
-        TX1REG = eusart1TxBuffer[eusart1TxTail++];
-        if(sizeof(eusart1TxBuffer) <= eusart1TxTail)
-        {
-            eusart1TxTail = 0;
-        }
-        eusart1TxBufferRemaining++;
+       TX1REG = eusart1TxBuffer[eusart1TxTail];
+       tempTxTail = (eusart1TxTail + 1) & EUSART1_TX_BUFFER_MASK;
+       
+       eusart1TxTail = tempTxTail;
+       eusart1TxBufferRemaining++; // one byte sent, so 1 more byte place is available in TX buffer
     }
     else
     {
@@ -246,73 +375,47 @@ void EUSART1_Transmit_ISR(void)
     }
 }
 
-void EUSART1_Receive_ISR(void)
+static void EUSART1_DefaultFramingErrorCallback(void)
 {
     
-    eusart1RxStatusBuffer[eusart1RxHead].status = 0;
-
-    if(RC1STAbits.FERR){
-        eusart1RxStatusBuffer[eusart1RxHead].ferr = 1;
-        EUSART1_FramingErrorHandler();
-    }
-
-    if(RC1STAbits.OERR){
-        eusart1RxStatusBuffer[eusart1RxHead].oerr = 1;
-        EUSART1_OverrunErrorHandler();
-    }
-    
-    if(eusart1RxStatusBuffer[eusart1RxHead].status){
-        EUSART1_ErrorHandler();
-    } else {
-        EUSART1_RxDataHandler();
-    }
-    
-    // or set custom function using EUSART1_SetRxInterruptHandler()
 }
 
-void EUSART1_RxDataHandler(void){
-    // use this default receive interrupt handler code
-    eusart1RxBuffer[eusart1RxHead++] = RC1REG;
-    if(sizeof(eusart1RxBuffer) <= eusart1RxHead)
-    {
-        eusart1RxHead = 0;
-    }
-    eusart1RxCount++;
-}
-
-void EUSART1_DefaultFramingErrorHandler(void){}
-
-void EUSART1_DefaultOverrunErrorHandler(void){
-    // EUSART1 error - restart
-
+static void EUSART1_DefaultOverrunErrorCallback(void)
+{
+    //Continuous Receive must be cleared to clear Overrun Error else Rx will not receive upcoming bytes
     RC1STAbits.CREN = 0;
     RC1STAbits.CREN = 1;
-
 }
 
-void EUSART1_DefaultErrorHandler(void){
-    EUSART1_RxDataHandler();
+void EUSART1_FramingErrorCallbackRegister(void (* callbackHandler)(void))
+{
+    if(NULL != callbackHandler)
+    {
+        EUSART1_FramingErrorHandler = callbackHandler;
+    }
 }
 
-void EUSART1_SetFramingErrorHandler(void (* interruptHandler)(void)){
-    EUSART1_FramingErrorHandler = interruptHandler;
+void EUSART1_OverrunErrorCallbackRegister(void (* callbackHandler)(void))
+{
+    if(NULL != callbackHandler)
+    {
+        EUSART1_OverrunErrorHandler = callbackHandler;
+    }    
 }
 
-void EUSART1_SetOverrunErrorHandler(void (* interruptHandler)(void)){
-    EUSART1_OverrunErrorHandler = interruptHandler;
+void EUSART1_RxCompleteCallbackRegister(void (* callbackHandler)(void))
+{
+    if(NULL != callbackHandler)
+    {
+       EUSART1_RxInterruptHandler = callbackHandler; 
+    }   
 }
 
-void EUSART1_SetErrorHandler(void (* interruptHandler)(void)){
-    EUSART1_ErrorHandler = interruptHandler;
+void EUSART1_TxCompleteCallbackRegister(void (* callbackHandler)(void))
+{
+    if(NULL != callbackHandler)
+    {
+       EUSART1_TxInterruptHandler = callbackHandler;
+    }   
 }
 
-void EUSART1_SetTxInterruptHandler(void (* interruptHandler)(void)){
-    EUSART1_TxDefaultInterruptHandler = interruptHandler;
-}
-
-void EUSART1_SetRxInterruptHandler(void (* interruptHandler)(void)){
-    EUSART1_RxDefaultInterruptHandler = interruptHandler;
-}
-/**
-  End of File
-*/

@@ -1,24 +1,14 @@
 /**
-  @Generated CCL Header File
-
-  @Company:
-    Microchip Technology Inc.
-
-  @File Name:
-    system.h
-
-  @Summary:
-    This is the system.h file generated using CCL
-
-  @Description:
-    This header file provides implementations for driver APIs for all modules selected in the GUI.
-    Generation Information :
-        Driver Version    :  2.00
-    The generated drivers are tested against the following:
-        Compiler          :  XC8 v2.20
-        MPLAB             :  MPLAB X 5.40
+ * System Driver Header File
+ * 
+ * @file system.h
+ * 
+ * @defgroup systemdriver System Driver
+ * 
+ * @brief This is the generated header file for the System driver.
+ *
+ * @version Driver Version 2.0.2
 */
-
 /*
 © [2023] Microchip Technology Inc. and its subsidiaries.
 
@@ -42,10 +32,10 @@
 
 #ifndef SYSTEM_H
 #define	SYSTEM_H
+
 #include <xc.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include <conio.h>
 #include "config_bits.h"
 #include "../system/clock.h"
 #include "../system/pins.h"
@@ -53,16 +43,12 @@
 #include "../system/interrupt.h"
 
 /**
- * @Param
-    none
- * @Returns
-    none
- * @Description
-    Initializes the device to the default states configured in the
- *                  MCC GUI
- * @Example
-    SYSTEM_Initialize(void);
- */
+ * @ingroup systemdriver
+ * @brief Initializes the system module.
+ * This routine is called only once during system initialization, before calling other APIs.
+ * @param None.
+ * @return None.
+*/
 void SYSTEM_Initialize(void);
 
 #endif	/* SYSTEM_H */

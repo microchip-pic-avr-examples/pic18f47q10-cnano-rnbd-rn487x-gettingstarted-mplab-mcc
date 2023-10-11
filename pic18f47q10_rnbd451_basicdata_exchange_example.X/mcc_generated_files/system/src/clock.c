@@ -48,10 +48,6 @@ void CLOCK_Initialize(void)
     //TUN undefined; 
     OSCTUNE = 0x0;
 
-    //Wait for PLL to stabilize
-    while( OSCSTATbits.PLLR == 0)
-    {
-    }
 }
 /**
  End of File

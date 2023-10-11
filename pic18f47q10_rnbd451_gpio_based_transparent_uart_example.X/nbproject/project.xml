@@ -4,7 +4,7 @@
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
             <name>pic18f47q10_rnbd451_gpio_based_transparent_uart_example</name>
-            <creation-uuid>87035055-0852-4d9b-aec4-3e08fda25f76</creation-uuid>
+            <creation-uuid>ce75714c-a3b3-4433-afc4-dba5e037f205</creation-uuid>
             <make-project-type>0</make-project-type>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
             <make-dep-projects/>

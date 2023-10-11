@@ -28,7 +28,7 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-#include "../uart/eusart1.h"
+#include "../../mcc_generated_files/uart/eusart1.h"
 #include "rnbd_example.h"
 #include "../rnbd/rnbd_interface.h"
 #include "../rnbd/rnbd.h"
@@ -39,6 +39,8 @@
  *  This is used by the application for communication buffers.
  */
 #define MAX_BUFFER_SIZE                 (80)
+
+bool returnval = false;
 
 /**< Status Buffer instance passed to RNBD drive used for Asynchronous Message Handling (see *RNBD_AsyncMessageHandlerSet in rnbd.c) */
 static char statusBuffer[MAX_BUFFER_SIZE];    
@@ -72,7 +74,7 @@ static bool RNBD_Example_BasicDataExchange(void);
  */  
 static void RNBD_Example_Run(void);
 
-bool Example_Initialized(void)
+bool RNBD_Example_Initialized(void)
 {
     bool exampleIsInitialized = false;
     
@@ -83,38 +85,43 @@ bool Example_Initialized(void)
     // Enable the Peripheral Interrupts
     INTERRUPT_PeripheralInterruptEnable();
 
-    RNBD_Initialize();
+    RNBD_Init();
 
     __delay_ms(300);
 
 
     uint16_t GR_HexByte=0;
-    RNBD_CmdModeEnter();
+    returnval = RNBD_EnterCmdMode();
     __delay_ms(50);
     
-    GR_HexByte=RNBD_GetGRCommand();
-    if((GR_HexByte & 0x1000) == 0x0000)
-    {
-        GR_HexByte|= 0x1000;
-        RNBD_FeaturesBitmapSet(GR_HexByte);
-        __delay_ms(50);
+	if(returnval == true)
+	{
+		GR_HexByte=RNBD_GetGRCommand();
+		if((GR_HexByte & 0x1000) == 0x0000)
+		{
+			GR_HexByte|= 0x1000;
+			RNBD_SetFeaturesBitmap(GR_HexByte);
+			__delay_ms(50);
 
-        RNBD_CmdReboot();
-        __delay_ms(300);
-    }
+			RNBD_RebootCmd();
+			__delay_ms(300);
+		}
+		else
+		{
+			RNBD_EnterDataMode();
+			__delay_ms(50);
+		}
+		
+		if (exampleIsInitialized == true)
+		{
+			RNBD_Example_Run();
+		}
+	}
     else
     {
-        RNBD_DataModeEnter();
-        __delay_ms(50);
+        return false;
     } 
 
-
-    
-    if (exampleIsInitialized == true)
-    {
-        RNBD_Example_Run();
-    }
-    return (false);     // ^ Held if Successful; Return failure if reaching this.
 }
 
 static void RNBD_Example_Run(void)

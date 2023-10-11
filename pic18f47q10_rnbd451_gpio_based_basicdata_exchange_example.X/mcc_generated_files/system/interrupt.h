@@ -5,9 +5,9 @@
  * 
  * @defgroup interrupt INTERRUPT
  * 
- * @brief This file contains API prototypes and other datatypes for Interrupt Manager.
+ * @brief This file contains API prototypes and other data types for the Interrupt Manager driver.
  *
- * @version Interrupt Manager Driver Version 2.0.4
+ * @version Interrupt Manager Driver Version 2.0.5
 */
 
 /*
@@ -37,171 +37,171 @@
 
 /**
  * @ingroup interrupt
- * @brief This macro will enable global interrupts.
- * @param void
- * @return void
+ * @brief Enables global interrupts.
+ * @param None.
+ * @return None.
  */
 #define INTERRUPT_GlobalInterruptEnable() (INTCONbits.GIE = 1)
 
 /**
  * @ingroup interrupt
- * @brief This macro will disable global interrupts.
- * @param void
- * @return void
+ * @brief Disables global interrupts.
+ * @param None.
+ * @return None.
  */
 #define INTERRUPT_GlobalInterruptDisable() (INTCONbits.GIE = 0)
 
 /**
  * @ingroup interrupt
- * @brief This macro will return the global interrupt enable bit status.
- * @param void
- * @retval 0 - Global Interrupt Disabled
- * @retval 1 - Global Interrupt Enabled
+ * @brief Returns the Global Interrupt Enable bit status.
+ * @param None.
+ * @retval 0 - Global interrupt disabled.
+ * @retval 1 - Global interrupt enabled.
  */
 #define INTERRUPT_GlobalInterruptStatus() (INTCONbits.GIE)
 
 /**
  * @ingroup interrupt
- * @brief This macro will enable peripheral interrupts.
- * @param void
- * @return void
+ * @brief Enables peripheral interrupts.
+ * @param None.
+ * @return None.
  */
 #define INTERRUPT_PeripheralInterruptEnable() (INTCONbits.PEIE = 1)
 
 /**
  * @ingroup interrupt
- * @brief This macro will disable peripheral interrupts.
- * @param void
- * @return void
+ * @brief Disables peripheral interrupts.
+ * @param None.
+ * @return None.
  */
 #define INTERRUPT_PeripheralInterruptDisable() (INTCONbits.PEIE = 0)
 
 /**
  * @ingroup interrupt
- * @brief Initializes Peripheral Interrupt priorities; Enables/disables priority vectors; and, Initializes External Interrupt.
- * @param void
- * @return void
+ * @brief Initializes peripheral interrupt priorities, enables or disables priority vectors and initializes the external interrupt.
+ * @param None.
+ * @return None.
  */
 void INTERRUPT_Initialize (void);
 
 
 /**
  * @ingroup interrupt
- * @brief This routine clears the interrupt flag for the external interrupt, INT0.
- * @param void
- * @return void
+ * @brief Clears the Interrupt flag for the external interrupt, INT0.
+ * @param None.
+ * @return None.
  */
 #define EXT_INT0_InterruptFlagClear()       (PIR0bits.INT0IF = 0)
 
 /**
  * @ingroup interrupt
- * @brief This routine clears the interrupt enable for the external interrupt, INT0, and thereafter external interrupts on this pin will not be serviced by the interrupt handler.
- * @param void
- * @return void
+ * @brief Clears the interrupt enable for the external interrupt, INT0. This way, the external interrupts on this pin will not be serviced by the interrupt handler.
+ * @param None.
+ * @return None.
  */
 #define EXT_INT0_InterruptDisable()     (PIE0bits.INT0IE = 0)
 
 /**
  * @ingroup interrupt
- * @brief This routine sets the interrupt enable for the external interrupt, INT0, and thereafter external interrupts on this pin will be serviced by the interrupt handler.
- * @param void
- * @return void
+ * @brief Sets the interrupt enable for the external interrupt, INT0. This way, the external interrupts on this pin will be serviced by the interrupt handler.
+ * @param None.
+ * @return None.
  */
 #define EXT_INT0_InterruptEnable()       (PIE0bits.INT0IE = 1)
 
 /**
  * @ingroup interrupt
- * @brief This routine set the edge detect of the extern interrupt to positive edge, and thereafter interrupt flag will be set when the external interrupt pins level transitions from a low to high level.
- * @param void
- * @return void
+ * @brief Sets the edge detect of the external interrupt to positive edge. This way, the Interrupt flag will be set when the external interrupt pin level transitions from low to high.
+ * @param None.
+ * @return None.
  */
 #define EXT_INT0_risingEdgeSet()          (INTCONbits.INT0EDG = 1)
 
 /**
  * @ingroup interrupt
- * @brief This routine set the edge detect of the extern interrupt to negative edge, and thereafter interrupt flag will be set when the external interrupt pins level transitions from a high to low level.
- * @param void
- * @return void
+ * @brief Sets the edge detect of the external interrupt to negative edge. This way, the Interrupt flag will be set when the external interrupt pin level transitions from high to low.
+ * @param None.
+ * @return None.
  */
 #define EXT_INT0_fallingEdgeSet()          (INTCONbits.INT0EDG = 0)
 
 /**
  * @ingroup interrupt
- * @brief This routine clears the interrupt flag for the external interrupt, INT1.
- * @param void
- * @return void
+ * @brief Clears the Interrupt flag for the external interrupt, INT1.
+ * @param None.
+ * @return None.
  */
 #define EXT_INT1_InterruptFlagClear()       (PIR0bits.INT1IF = 0)
 
 /**
  * @ingroup interrupt
- * @brief This routine clears the interrupt enable for the external interrupt, INT1, and thereafter external interrupts on this pin will not be serviced by the interrupt handler.
- * @param void
- * @return void
+ * @brief Clears the interrupt enable for the external interrupt, INT1. This way, the external interrupts on this pin will not be serviced by the interrupt handler.
+ * @param None.
+ * @return None.
  */
 #define EXT_INT1_InterruptDisable()     (PIE0bits.INT1IE = 0)
 
 /**
  * @ingroup interrupt
- * @brief This routine sets the interrupt enable for the external interrupt, INT1, and thereafter external interrupts on this pin will be serviced by the interrupt handler.
- * @param void
- * @return void
+ * @brief Sets the interrupt enable for the external interrupt, INT1. This way, the external interrupts on this pin will be serviced by the interrupt handler.
+ * @param None.
+ * @return None.
  */
 #define EXT_INT1_InterruptEnable()       (PIE0bits.INT1IE = 1)
 
 /**
  * @ingroup interrupt
- * @brief This routine set the edge detect of the extern interrupt to positive edge, and thereafter interrupt flag will be set when the external interrupt pins level transitions from a low to high level.
- * @param void
- * @return void
+ * @brief Sets the edge detect of the external interrupt to positive edge. This way, the Interrupt flag will be set when the external interrupt pin level transitions from low to high.
+ * @param None.
+ * @return None.
  */
 #define EXT_INT1_risingEdgeSet()          (INTCONbits.INT1EDG = 1)
 
 /**
  * @ingroup interrupt
- * @brief This routine set the edge detect of the extern interrupt to negative edge, and thereafter interrupt flag will be set when the external interrupt pins level transitions from a high to low level.
- * @param void
- * @return void
+ * @brief Sets the edge detect of the external interrupt to negative edge. This way, the Interrupt flag will be set when the external interrupt pin level transitions from high to low.
+ * @param None.
+ * @return None.
  */
 #define EXT_INT1_fallingEdgeSet()          (INTCONbits.INT1EDG = 0)
 
 /**
  * @ingroup interrupt
- * @brief This routine clears the interrupt flag for the external interrupt, INT2.
- * @param void
- * @return void
+ * @brief Clears the Interrupt flag for the external interrupt, INT2.
+ * @param None.
+ * @return None.
  */
 #define EXT_INT2_InterruptFlagClear()       (PIR0bits.INT2IF = 0)
 
 /**
  * @ingroup interrupt
- * @brief This routine clears the interrupt enable for the external interrupt, INT2, and thereafter external interrupts on this pin will not be serviced by the interrupt handler.
- * @param void
- * @return void
+ * @brief Clears the interrupt enable for the external interrupt, INT2. This way, the external interrupts on this pin will not be serviced by the interrupt handler.
+ * @param None.
+ * @return None.
  */
 #define EXT_INT2_InterruptDisable()     (PIE0bits.INT2IE = 0)
 
 /**
  * @ingroup interrupt
- * @brief This routine sets the interrupt enable for the external interrupt, INT2, and thereafter external interrupts on this pin will be serviced by the interrupt handler.
- * @param void
- * @return void
+ * @brief Sets the interrupt enable for the external interrupt, INT2. This way, the external interrupts on this pin will be serviced by the interrupt handler.
+ * @param None.
+ * @return None.
  */
 #define EXT_INT2_InterruptEnable()       (PIE0bits.INT2IE = 1)
 
 /**
  * @ingroup interrupt
- * @brief This routine set the edge detect of the extern interrupt to positive edge, and thereafter interrupt flag will be set when the external interrupt pins level transitions from a low to high level.
- * @param void
- * @return void
+ * @brief Sets the edge detect of the external interrupt to positive edge. This way, the Interrupt flag will be set when the external interrupt pin level transitions from low to high.
+ * @param None.
+ * @return None.
  */
 #define EXT_INT2_risingEdgeSet()          (INTCONbits.INT2EDG = 1)
 
 /**
  * @ingroup interrupt
- * @brief This routine set the edge detect of the extern interrupt to negative edge, and thereafter interrupt flag will be set when the external interrupt pins level transitions from a high to low level.
- * @param void
- * @return void
+ * @brief Sets the edge detect of the external interrupt to negative edge. This way, the Interrupt flag will be set when the external interrupt pin level transitions from high to low.
+ * @param None.
+ * @return None.
  */
 #define EXT_INT2_fallingEdgeSet()          (INTCONbits.INT2EDG = 0)
 
@@ -211,136 +211,136 @@ void INTERRUPT_Initialize (void);
 
 /**
  * @ingroup interrupt
- * @brief This ISR will execute whenever the signal on the INT0 pin will transition to the preconfigured state.
+ * @brief Executes the ISR whenever the signal on the INT0 pin transitions to the preconfigured state.
  * @pre Interrupt Manager is initialized.
- * @param void
- * @return void
+ * @param None.
+ * @return None.
  */
 void INT0_ISR(void);
 
 /**
  * @ingroup interrupt
- * @brief Allows for a specific callback function to be called in the INT0 ISR and allows for a non-specific interrupt handler to be called at runtime.
+ * @brief Allows for a specific callback function to be called in the INT0 ISR and for a nonspecific interrupt handler to be called at run time.
  * @pre Interrupt Manager is initialized.
- * @param void
- * @return void
+ * @param None.
+ * @return None.
  */
 void INT0_CallBack(void);
 
 /**
  * @ingroup interrupt
- * @brief Allows selecting an interrupt handler for EXT_INT0 - INT0 at application runtime.
+ * @brief Allows selecting an interrupt handler for EXT_INT0 - INT0 at application run time.
  * @pre Interrupt Manager is initialized.
- * @param (*InterruptHandler)(void) - InterruptHandler function pointer
- * @return void
+ * @param (*InterruptHandler)(void) - InterruptHandler function pointer.
+ * @return None.
  */
 void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
 
 /**
  * @ingroup interrupt
- * @brief This is the dynamic interrupt handler which is called every time the INT0 ISR is executed and allows any function to be registered at runtime.
+ * @brief Dynamic interrupt handler to be called every time the INT0 ISR is executed. It allows any function to be registered at run time.
  * @pre Interrupt Manager is initialized.
- * @param void
- * @return void
+ * @param None.
+ * @return None.
  */
 extern void (*INT0_InterruptHandler)(void);
 
 /**
  * @ingroup interrupt
- * @brief This is the default interrupt handler which is called every time the INT0 ISR is executed and allows any function to be registered at runtime.
+ * @brief Default interrupt handler to be called every time the INT0 ISR is executed. It allows any function to be registered at run time.
  * @pre Interrupt Manager is initialized.
- * @param void
- * @return void
+ * @param None.
+ * @return None.
  */
 void INT0_DefaultInterruptHandler(void);
 
 /**
  * @ingroup interrupt
- * @brief This ISR will execute whenever the signal on the INT1 pin will transition to the preconfigured state.
+ * @brief Executes the ISR whenever the signal on the INT1 pin transitions to the preconfigured state.
  * @pre Interrupt Manager is initialized.
- * @param void
- * @return void
+ * @param None.
+ * @return None.
  */
 void INT1_ISR(void);
 
 /**
  * @ingroup interrupt
- * @brief Allows for a specific callback function to be called in the INT1 ISR and allows for a non-specific interrupt handler to be called at runtime.
+ * @brief Allows for a specific callback function to be called in the INT1 ISR and for a nonspecific interrupt handler to be called at run time.
  * @pre Interrupt Manager is initialized.
- * @param void
- * @return void
+ * @param None.
+ * @return None.
  */
 void INT1_CallBack(void);
 
 /**
  * @ingroup interrupt
- * @brief Allows selecting an interrupt handler for EXT_INT1 - INT1 at application runtime.
+ * @brief Allows selecting an interrupt handler for EXT_INT1 - INT1 at application run time.
  * @pre Interrupt Manager is initialized.
- * @param (*InterruptHandler)(void) - InterruptHandler function pointer
- * @return void
+ * @param (*InterruptHandler)(void) - InterruptHandler function pointer.
+ * @return None.
  */
 void INT1_SetInterruptHandler(void (* InterruptHandler)(void));
 
 /**
  * @ingroup interrupt
- * @brief This is the dynamic interrupt handler which is called every time the INT1 ISR is executed and allows any function to be registered at runtime.
+ * @brief Dynamic interrupt handler to be called every time the INT1 ISR is executed. It allows any function to be registered at run time.
  * @pre Interrupt Manager is initialized.
- * @param void
- * @return void
+ * @param None.
+ * @return None.
  */
 extern void (*INT1_InterruptHandler)(void);
 
 /**
  * @ingroup interrupt
- * @brief This is the default interrupt handler which is called every time the INT1 ISR is executed and allows any function to be registered at runtime.
+ * @brief Default interrupt handler to be called every time the INT1 ISR is executed. It allows any function to be registered at run time.
  * @pre Interrupt Manager is initialized.
- * @param void
- * @return void
+ * @param None.
+ * @return None.
  */
 void INT1_DefaultInterruptHandler(void);
 
 /**
  * @ingroup interrupt
- * @brief This ISR will execute whenever the signal on the INT2 pin will transition to the preconfigured state.
+ * @brief Executes the ISR whenever the signal on the INT2 pin transitions to the preconfigured state.
  * @pre Interrupt Manager is initialized.
- * @param void
- * @return void
+ * @param None.
+ * @return None.
  */
 void INT2_ISR(void);
 
 /**
  * @ingroup interrupt
- * @brief Allows for a specific callback function to be called in the INT2 ISR and allows for a non-specific interrupt handler to be called at runtime.
+ * @brief Allows for a specific callback function to be called in the INT2 ISR and for a nonspecific interrupt handler to be called at run time.
  * @pre Interrupt Manager is initialized.
- * @param void
- * @return void
+ * @param None.
+ * @return None.
  */
 void INT2_CallBack(void);
 
 /**
  * @ingroup interrupt
- * @brief Allows selecting an interrupt handler for EXT_INT2 - INT2 at application runtime.
+ * @brief Allows selecting an interrupt handler for EXT_INT2 - INT2 at application run time.
  * @pre Interrupt Manager is initialized.
- * @param (*InterruptHandler)(void) - InterruptHandler function pointer
- * @return void
+ * @param (*InterruptHandler)(void) - InterruptHandler function pointer.
+ * @return None.
  */
 void INT2_SetInterruptHandler(void (* InterruptHandler)(void));
 
 /**
  * @ingroup interrupt
- * @brief This is the dynamic interrupt handler which is called every time the INT2 ISR is executed and allows any function to be registered at runtime.
+ * @brief Dynamic interrupt handler to be called every time the INT2 ISR is executed. It allows any function to be registered at run time.
  * @pre Interrupt Manager is initialized.
- * @param void
- * @return void
+ * @param None.
+ * @return None.
  */
 extern void (*INT2_InterruptHandler)(void);
 
 /**
  * @ingroup interrupt
- * @brief This is the default interrupt handler which is called every time the INT2 ISR is executed and allows any function to be registered at runtime.
+ * @brief Default interrupt handler to be called every time the INT2 ISR is executed. It allows any function to be registered at run time.
  * @pre Interrupt Manager is initialized.
- * @param void
- * @return void
+ * @param None.
+ * @return None.
  */
 void INT2_DefaultInterruptHandler(void);
 

@@ -10,7 +10,7 @@
         "shortDescription": "This code example demonstrates how to transfer Data between mobile APP and to the PC Terminal for rnbd-rn487x ble devices using PIC microcontroller.",
         "ide": {
             "name": "MPLAB X",
-            "semverRange": ">=6.0.10"
+            "semverRange": ">=6.0.15"
         },
         "compiler": [
             {
@@ -20,7 +20,7 @@
         ],
         "dfp": {
             "name": "PIC18F-Q_DFP",
-            "semverRange": "^1.17.379"
+            "semverRange": "^1.21.411"
         },
         "configurator": {
             "name": "MCC",

@@ -5,9 +5,9 @@
  * 
  * @ingroup interrupt 
  * 
- * @brief This file contains the driver code for Interrupt Manager.
+ * @brief This file contains the API implementation for the Interrupt Manager driver.
  * 
- * @version Interrupt Manager Driver Version 2.0.4
+ * @version Interrupt Manager Driver Version 2.0.5
 */
 
 /*
@@ -72,36 +72,35 @@ void  INTERRUPT_Initialize (void)
 
 /**
  * @ingroup interrupt
- * @brief This routine services the ISRs of enabled interrupts and is called everytime an interrupt is triggered.
+ * @brief Services the Interrupt Service Routines (ISR) of enabled interrupts and is called every time an interrupt is triggered.
  * @pre Interrupt Manager is initialized.
- * @param void
- * @return void
+ * @param None.
+ * @return None.
  */
 void __interrupt() INTERRUPT_InterruptManager (void)
 {
-    // GPIO pin interrupt on Change(IOC)
+    // interrupt handler
     if(PIE0bits.IOCIE == 1 && PIR0bits.IOCIF == 1)
     {
         PIN_MANAGER_IOC();
     }
-    // interrupt handler
-    if(INTCONbits.PEIE == 1)
+    else if(INTCONbits.PEIE == 1)
     {
-        if(PIE3bits.TX2IE == 1 && PIR3bits.TX2IF == 1)
+        if(PIE3bits.TX1IE == 1 && PIR3bits.TX1IF == 1)
         {
-            EUSART2_TxDefaultInterruptHandler();
-        } 
-        else if(PIE3bits.RC2IE == 1 && PIR3bits.RC2IF == 1)
-        {
-            EUSART2_RxDefaultInterruptHandler();
-        } 
-        else if(PIE3bits.TX1IE == 1 && PIR3bits.TX1IF == 1)
-        {
-            EUSART1_TxDefaultInterruptHandler();
+            EUSART1_TxInterruptHandler();
         } 
         else if(PIE3bits.RC1IE == 1 && PIR3bits.RC1IF == 1)
         {
-            EUSART1_RxDefaultInterruptHandler();
+            EUSART1_RxInterruptHandler();
+        } 
+        else if(PIE3bits.TX2IE == 1 && PIR3bits.TX2IF == 1)
+        {
+            EUSART2_TxInterruptHandler();
+        } 
+        else if(PIE3bits.RC2IE == 1 && PIR3bits.RC2IF == 1)
+        {
+            EUSART2_RxInterruptHandler();
         } 
         else
         {

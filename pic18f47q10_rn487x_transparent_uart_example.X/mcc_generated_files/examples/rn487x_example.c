@@ -28,7 +28,7 @@
 
 #include <stdbool.h>
 #include "rn487x_example.h"
-#include "../uart/eusart2.h"
+#include "../../mcc_generated_files/uart/eusart2.h"
 #include "../rn487x/rn487x_interface.h"
 #include "../rn487x/rn487x.h"
 #include "../system/interrupt.h"
@@ -64,7 +64,7 @@ static bool RN487X_Example_TransparentUart(void);
  */  
 static void RN487X_Example_Run(void);
 
-bool Example_Initialized(void)
+bool RN487X_Example_Initialized(void)
 {
     bool exampleIsInitialized = false;
     
@@ -75,7 +75,7 @@ bool Example_Initialized(void)
     // Enable the Peripheral Interrupts
     INTERRUPT_PeripheralInterruptEnable();
 
-    RN487X_Initialize();
+    RN487X_Init();
 
     __delay_ms(300);
     

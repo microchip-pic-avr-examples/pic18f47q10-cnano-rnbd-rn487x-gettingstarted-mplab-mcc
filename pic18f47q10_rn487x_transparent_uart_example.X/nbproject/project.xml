@@ -4,7 +4,7 @@
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
             <name>pic18f47q10_rn487x_transparent_uart_example</name>
-            <creation-uuid>4fa0547a-840b-49be-8492-759cbde3826d</creation-uuid>
+            <creation-uuid>2130dbe0-8f0c-4514-8043-4f74ecdc32ab</creation-uuid>
             <make-project-type>0</make-project-type>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
             <make-dep-projects/>
