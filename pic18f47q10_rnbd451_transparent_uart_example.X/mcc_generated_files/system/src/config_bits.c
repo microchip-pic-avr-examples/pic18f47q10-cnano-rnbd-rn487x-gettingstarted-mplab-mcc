@@ -1,17 +1,19 @@
 /**
- * CONFIGURATION BITS Generated Driver Source File
+ * Configuration Bits Generated Driver Source File
  * 
  * @file config_bits.c
  * 
  * @ingroup config_bitsdriver
  * 
- * @brief This is the generated Device Configuration bits file.
+ * @brief This file contains the API Implementation for the Device Configuration Bits driver.
  *
- * @version Driver Version 2.0.1
+ * @version Driver Version 2.0.2
+ *
+ * @version Package Version 2.1.5
 */
 
 /*
-© [2023] Microchip Technology Inc. and its subsidiaries.
+© [2024] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -35,7 +37,7 @@
 
 //CONFIG1L
 #pragma config FEXTOSC = ECH     // External Oscillator Mode Selection->EC (external clock) above 8 MHz; PFM set to high power
-#pragma config RSTOSC = EXTOSC     // Power-Up Default Value for COSC->EXTOSC operating per FEXTOSC bits (device manufacturing default)
+#pragma config RSTOSC = HFINTOSC_64MHZ     // Power-Up Default Value for COSC->HFINTOSC with HFFRQ = 64 MHz and CDIV = 1:1
 
 //CONFIG1H
 #pragma config CLKOUTEN = OFF     // Clock Out Enable->CLKOUT function is disabled

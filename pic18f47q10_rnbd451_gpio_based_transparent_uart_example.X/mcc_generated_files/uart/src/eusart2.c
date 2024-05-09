@@ -11,7 +11,7 @@
 */
 
 /*
-© [2023] Microchip Technology Inc. and its subsidiaries.
+© [2024] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -40,10 +40,10 @@
   Section: Macro Declarations
 */
 
-#define EUSART2_TX_BUFFER_SIZE (8) //buffer size should be 2^n
+#define EUSART2_TX_BUFFER_SIZE (64) //buffer size should be 2^n
 #define EUSART2_TX_BUFFER_MASK (EUSART2_TX_BUFFER_SIZE - 1) 
 
-#define EUSART2_RX_BUFFER_SIZE (8) //buffer size should be 2^n
+#define EUSART2_RX_BUFFER_SIZE (64) //buffer size should be 2^n
 #define EUSART2_RX_BUFFER_MASK (EUSART2_RX_BUFFER_SIZE - 1)
 
 /**
