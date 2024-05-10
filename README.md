@@ -25,7 +25,10 @@
     -   [RN487x Example 1: Running Basic Data Exchange Example Application](#rn487x-example1:-running-basic-data-exchange-example-application)
     -   [RN487x Example 2: Running Transparent UART Example Application](#rn487x-example2:-running-transparent-uart-example-application)
 -   [Summary](#summary)
--   **Note:** RNBD Project Configuration and Example application's will be applicable for both RNBD451 and RNBD350 devices.
+
+-   **Note:**
+ -  In the below projet creation steps where ever RNBD is mentioned is applicable for both RNBD451 and RNBD350 devices
+ - OTA DFU support is not applicable for RNBD350 based applications because in RNBD350 OTA DFU is implemented using Host MCU DFU process. For 8-bit application due to memory limitation OTA appliction is not supported
 
 # Introduction<a name="introduction"></a>
 
