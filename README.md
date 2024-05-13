@@ -27,8 +27,9 @@
 -   [Summary](#summary)
 
 -   **Note:**
- -  In the below projet creation steps where ever RNBD is mentioned is applicable for both RNBD451 and RNBD350 devices
- - OTA DFU support is not applicable for RNBD350 based applications because in RNBD350 OTA DFU is implemented using Host MCU DFU process. For 8-bit application due to memory limitation OTA appliction is not supported
+ 1. In the below project creation steps where ever RNBD is mentioned is applicable for both RNBD451 and RNBD350 devices.
+
+ 2. The Over-the-Air (OTA) Device Firmware Update (DFU) support is not applicable for RNBD350-based applications because the OTA DFU for RNBD350 is implemented using the Host Microcontroller (MCU) DFU process. OTA is not supported for 8-bit applications due to memory limitation.
 
 # Introduction<a name="introduction"></a>
 
@@ -36,7 +37,7 @@ The MPLAB® Code Configurator (MCC) [RNBD](https://www.microchip.com/en-us/produ
 
 Refer to the /images folder for source files and max resolution.
 
-The library module uses an MCC Graphic User Interface (GUI) to set the configuration, along with the custom configurations of the protocol. The customized C code is generated in a folder named "MCC Generated Files" within the MPLABX project.
+The library module uses an MCC Graphic User Interface (GUI) to set the configuration, along with the custom configurations of the protocol. The customized C code is generated in a folder named "MCC Generated Files" within the MPLAB X project.
 
 This library uses one Universal Asynchronous Receiver and Transmitter (UART), one General Purpose Input/Output (GPIO) and DELAY support at minimal.
 
@@ -95,11 +96,11 @@ This library uses one Universal Asynchronous Receiver and Transmitter (UART), on
 ## RNBD Pin Mapping and Hardware Setup
 -   Pin mapping table between the MCU and the RNBD Click:
 
-    | S.no | Pin Functionality | PIC |  RNBD Click   |
-    |------|-------------------|-----|---------------|
-    |   1  | Receive (RxD)     | RB3 |     Tx        |
-    |   2  | Transmit (TxD)    | RB0 |     Rx        |
-    |   3  | BT_RST            | RC7 |     RST       |
+    | S. No | Pin Functionality | PIC |  RNBD Click   |
+    |-------|-------------------|-----|---------------|
+    |   1   | Receive (RxD)     | RB3 |     Tx        |
+    |   2   | Transmit (TxD)    | RB0 |     Rx        |
+    |   3   | BT_RST            | RC7 |     RST       |
 
 -   Connect the development board of your choice and then connect the RNBD to the proper slot. The image below shows how to connect the RNBD Click to **Slot 2**.
 
@@ -242,7 +243,7 @@ Install the MPLAB Code Configurator Plug-in:
 
         <br />
 
-    -   Set "HF Internal Clock" to 32_MHz and "Clock Divider" to 1.
+    -   Set "HF Internal Clock" to 32_MHz and "Clock Divider" to 1
 
         <br />
 
@@ -287,15 +288,11 @@ This section explains the RNBD MPLAB X IDE project setup, code generation, and s
 1.   The Basic Data Exchange application uses only one instance of UART1 (PLIB ---> EUSART1) for data transfer.
 2.   **Important:** For EUSART Rx1 and Tx1, deselect the checkboxes in the Analog, Slew Rate and Input Level Control columns.
 
-    <br />
-
     ![](images/GUID-35C1A268-4B45-445C-A18D-6226F6B17F94-low.png)
 
     <br />
 
     ![](images/GUID-EC994A31-01F2-4337-8A5E-FC2BD24948F8-low.png)
-
-    <br />
 
 
 Configuration for PIC Basic Data Exchange was completed. Click [here](#rnbd-code-generation-&-compilation) for the RNBD code generation and compilation section.
@@ -318,10 +315,8 @@ Configuration for PIC Basic Data Exchange was completed. Click [here](#rnbd-code
 
 **Notes:**
 
-1.   The Transparent UART application uses two instance of UART1 and UART2 (PLIB ---> EUSART1 and EUSART2) for data transfer
+1.   The Transparent UART application uses two instances of UART1 and UART2 (PLIB ---> EUSART1 and EUSART2) for data transfer.
 2.   **Important:** For EUSART Rx1 and Tx1, deselect the checkboxes in the Analog, Slew Rate and Input Level Control columns.
-
-    <br />
 
     ![](images/GUID-6FE8C4EC-D58D-4571-B1FF-EACC4DD81068-low.png)
 
@@ -330,11 +325,11 @@ Configuration for PIC Basic Data Exchange was completed. Click [here](#rnbd-code
     ![](images/GUID-2588BC61-2739-4821-BF2A-8EBBC69C45E8-low.png)
 
 
-Configuration for PIC Transparent UART was completed. Click [here](#rnbd-code-generation-&-compilation) for RNBD code generation and compilation section.
+Configuration for PIC Transparent UART was completed. Click [here](#rnbd-code-generation-&-compilation) for the RNBD code generation and compilation section.
 
 ## RNBD GPIO Based Connection Setup<a name="rnbd-gpio-based-connection-setup"></a>
 
-The RNBD device can use Bluetooth (BT) Status indication 1 and Bluetooth (BT) Status indication 2 pins to indicate the GPIO connection status. Besides monitoring the connect message in the serial UART prints, this feature is useful when the Host MCU can verify the BT connection status, by monitoring the status indication pins.
+The RNBD device can use Bluetooth (BT) Status Indication 1 and Bluetooth (BT) Status Indication 2 pins to indicate the GPIO connection status. Besides monitoring the connect message in the serial UART prints, this feature is useful when the host MCU can verify the BT connection status by monitoring the status indication pins.
 
 **Bluetooth (BT) Status Indication Pin Table:**
 
@@ -355,6 +350,7 @@ Pin Mapping Between RNBD Bluetooth (BT) Status indication 1 and indication 2 Pin
 
 <br />
 
+Configuration settings:
 1.  Select the GPIO based example and connection (Pin selection), as they are applicable for both the Basic Data Exchange and the Transparent UART application.
 
     <br />
@@ -395,7 +391,7 @@ Pin Mapping Between RNBD Bluetooth (BT) Status indication 1 and indication 2 Pin
 
     <br />
 
-    Configuration for GPIO based connection was completed. Click [here](#rnbd-code-generation-&-compilation) for RNBD code generation and compilation section.
+    Configuration for GPIO based connection was completed. Click [here](#rnbd-code-generation-&-compilation) for the RNBD code generation and compilation section.
 
 
 ## RNBD Code Generation and Compilation<a name="rnbd-code-generation-&-compilation"></a>
@@ -406,8 +402,11 @@ Pin Mapping Between RNBD Bluetooth (BT) Status indication 1 and indication 2 Pin
 
     ![](images/GUID-2D18886B-77EB-4E2D-823C-79E1585D3E03-low.png)
 
-    2.  Include the header `#include "mcc_generated_files/examples/rnbd_example.h"` in `main.c`.
-    3.  Call the `RNBD_Example_Initialized();` function in `main()` after `SYSTEM_Initialize()`.![](images/GUID-F690E78C-B6C8-4EC8-BD6D-4555B1ABAEB6-low.png)
+2.  Include the header `#include "mcc_generated_files/examples/rnbd_example.h"` in `main.c`.
+
+3.  Call the `RNBD_Example_Initialized();` function in `main()` after `SYSTEM_Initialize()`.
+
+    ![](images/GUID-F690E78C-B6C8-4EC8-BD6D-4555B1ABAEB6-low.png)
 
 4.  Connect the development board of your choice and then connect the RNBD to the proper slot. The image below shows how to connect the RNBD Click to **Slot 2**.
 
@@ -417,9 +416,9 @@ Pin Mapping Between RNBD Bluetooth (BT) Status indication 1 and indication 2 Pin
 
     <br />
 
-    **Important:** The slot was decided based on the UART Instances which were configured for this example (see the Pin mapping table between the MCU and the RNBD Click shown below).
+    **Important:** The slot was decided based on the UART instances which were configured for this example (see the pin mapping table between the MCU and the RNBD Click shown below).
 
-    - Pin Mapping Table between MCU & RNBD Click
+    - Pin mapping Table between the MCU and RNBD Click
         <br />
 
         |S.no|Pin Functionality|PIC|RNBD Click  |
@@ -490,13 +489,11 @@ The `#define DEMO_PERIODIC_TRANSMIT_COUNT (10000)` and `#define DEMO_PERIODIC_CH
 7.  Select "Listen for notifications" on the application.
       -   It may be required to enable app notifications on the phone. Data will be sent periodically to the device and will be visible beneath the Notify/Listen setting.
 
-        -   Before turning on the Notify/Indicate setting:
+        -   Before turning on the Notify/Indicate setting<br />
+        ![](images/GUID-C5223277-D33D-4366-8CA4-124D340F0554-low.png)
 
-            ![](images/GUID-C5223277-D33D-4366-8CA4-124D340F0554-low.png)
-
-        -  After turning on the Notify/Indicate setting, the mobile application can read "31", data which was sent from the RNBD module
-
-            ![](images/GUID-83D3CD62-CA8C-4C6C-88AF-CA15728E6392-low.png)
+        -  After turning on the Notify/Indicate setting, the mobile application can read "31", data which was sent from the RNBD module<br />
+        ![](images/GUID-83D3CD62-CA8C-4C6C-88AF-CA15728E6392-low.png)
 
 
 ## RNBD Example 2: Running Transparent UART Example Application<a name="rnbd-example2:-running-transparent-uart-example-application"></a>
@@ -533,7 +530,7 @@ This example shows how the data transmitted from a PC serial terminal is written
 
     <br />
 
-4.  For Transparent Serial only: Open a Serial Terminal Program such as Tera Term, Realterm, PuTTY, Serial, or similar. Baud rate will be configured as 115200.
+4.  For Transparent Serial only: Open a Serial Terminal Program such as Tera Term, Realterm, PuTTY, Serial or similar. Baud rate will be configured as 115200.
 
     <br />
 
@@ -579,7 +576,7 @@ This example shows how the data transmitted from a PC serial terminal is written
 
     <br />
 
-7.  Type any data on the serial terminal of the RNBD45x to send to the Microchip Bluetooth Data app. The data is received and printed on the receive view of the app
+7.  Type any data on the serial terminal of the RNBD45x to send to the Microchip Bluetooth Data app. The data is received and printed on the receive view of the app.
 
     <br />
 
@@ -621,15 +618,14 @@ This section explains the RN487x MPLAB X IDE project setup, code generation, and
 
 **Notes:**
 
-1.   Basic Data Exchange application uses only one instance of UART1 (PLIB ---> EUSART1) for data transfer.
+1. Basic Data Exchange application uses only one instance of UART1 (PLIB ---> EUSART1) for data transfer.<br />
+   ![](images/GUID-EC994A31-01F2-4337-8A5E-FC2BD24948F8-low.png)
 
-    ![](images/GUID-EC994A31-01F2-4337-8A5E-FC2BD24948F8-low.png)
-2.   **Important:** For EUSART Rx1 and Tx1 deselect the checkboxes in the Analog, Slew Rate and Input Level Control columns.
-
-    ![](images/GUID-35C1A268-4B45-445C-A18D-6226F6B17F94-low.png)
+2. **Important:** For EUSART Rx1 and Tx1 deselect the checkboxes in the Analog, Slew Rate and Input Level Control columns.<br />
+   ![](images/GUID-35C1A268-4B45-445C-A18D-6226F6B17F94-low.png)
 
 
-Configuration for PIC Basic Data Exchange was completed. Click [here](#rn487x-code-generation-&-compilation) for RN487x code generation and compilation section.
+Configuration for PIC Basic Data Exchange was completed. Click [here](#rn487x-code-generation-&-compilation) for the RN487x code generation and compilation section.
 
 ## RN487x Transparent UART Application Pin Settings<a name="rn487x-transparent-uart-application-pin-settings"></a>
 
@@ -652,17 +648,14 @@ Configuration for PIC Basic Data Exchange was completed. Click [here](#rn487x-co
 
 **Notes:**
 
-1.   The Transparent UART application uses two instance of UART1 and UART2 (PLIB ---> EUSART1 and EUSART2) for data transfer.
-    ![](images/GUID-2588BC61-2739-4821-BF2A-8EBBC69C45E8-low.png)
-2.   **Important:** For EUSART Rx1 and Tx1, deselect the checkboxes in the Analog, Slew Rate and Input Level Control columns.
-
-    <br />
-
+1.   The Transparent UART application uses two instances of UART1 and UART2 (PLIB ---> EUSART1 and EUSART2) for data transfer.<br />
+     ![](images/GUID-2588BC61-2739-4821-BF2A-8EBBC69C45E8-low.png)
+2.   **Important:** For EUSART Rx1 and Tx1, deselect the checkboxes in the Analog, Slew Rate and Input Level Control columns.<br />
     ![](images/GUID-6FE8C4EC-D58D-4571-B1FF-EACC4DD81068-low.png)
 
 
 
-Configuration for PIC Transparent UART was completed. Click [here](#rn487x-code-generation-&-compilation) for RN487x code generation and compilation section.
+Configuration for PIC Transparent UART was completed. Click [here](#rn487x-code-generation-&-compilation) for the RN487x code generation and compilation section.
 
 ## RN487x Code Generation and Compilation<a name="rn487x-code-generation-&-compilation"></a>
 
@@ -679,8 +672,7 @@ Configuration for PIC Transparent UART was completed. Click [here](#rn487x-code-
 
     <br />
 
-4.  Connect the development board of your choice and then connect the RN487x to the proper slot. The image below shows how to connect the RN487x Click to **Slot 2**.
-ot 2** as shown in below image
+4.  Connect the development board of your choice and then connect the RN487x to the proper slot. The image below shows how to connect the RN487x Click to **Slot 2** as shown in below image.
 
     <br />
 
@@ -688,16 +680,16 @@ ot 2** as shown in below image
 
     <br />
 
-    **Important:** Slot was decided based on the UART instances which was configured for this example application (see the pin mapping table between the MCU and the RN487x Click shown belo
+    **Important:** Slot was decided based on the UART instances which were configured for this example application (see the pin mapping table between the MCU and the RN487x Click shown below)
 
     - Pin Mapping Table between MCU & RN487x Click
         <br />
 
-        |S.no|Pin Functionality|PIC|RN487x Click|
-        |----|-----------------|---|----------  |
-        |  1 |Receive (RxD)    |RB3| Tx         |
-        |  2 |Transmit (TxD)   |RB0| Rx         |
-        |  3 |BT_RST           |RC7| RST        |
+        |S. No|Pin Functionality|PIC|RN487x Click|
+        |-----|-----------------|---|----------  |
+        |  1  |Receive (RxD)    |RB3| Tx         |
+        |  2  |Transmit (TxD)   |RB0| Rx         |
+        |  3  |BT_RST           |RC7| RST        |
 
 
 
@@ -732,7 +724,7 @@ The `#define DEMO_PERIODIC_TRANSMIT_COUNT (10000)` and `#define DEMO_PERIODIC_CH
 
       ![](images/GUID-E19A7964-8190-4C53-8BBA-6370A19C9829-low.png)
 
-3.  The application automatically scan the area for Bluetooth devices within range. Look for the "RN487x" device under scanned list.
+3.  The application automatically scans the area for Bluetooth devices within range. Look for the "RN487x" device under the scan list.
 
     <br />
 
@@ -748,7 +740,7 @@ The `#define DEMO_PERIODIC_TRANSMIT_COUNT (10000)` and `#define DEMO_PERIODIC_CH
 
     <br />
 
-5.  Once connected Microchip Bluetooth app identifies all the services and characteristics supported by the RN487x.
+5.  Once connected, the Microchip Bluetooth app identifies all the services and characteristics supported by the RN487x.
 
     <br />
 
@@ -817,7 +809,7 @@ This example shows how the data transmitted from a PC serial terminal is written
 
     <br />
 
-    - Click the **'Scan image'** icon to scan for the nearby "RN487x-xxxx"
+    - Click the '**Scan image**' icon to scan for the nearby "RN487x-xxxx"
 
       <br />
 
@@ -847,7 +839,7 @@ This example shows how the data transmitted from a PC serial terminal is written
 
     <br />
 
-5.  Once Connected to RN487x-xxxx click "Transfer data to device" to initiate the data transfer.
+5.  Once connected to RN487x-xxxx, click "Transfer data to device" to initiate the data transfer.
 
     <br />
 
@@ -898,7 +890,7 @@ This example shows how the data transmitted from a PC serial terminal is written
 
 **Command, Data Communication with Asynchronized Message Processing**
 
-This driver has the inherent code capability to distinguish between Message exchange and Data exchange at the level of the connected MCU and module devices. The library supplies all required APIs needed for the implementation of a functional BLE-connected end-device. The three required pins can be selected through the GUI provided by the MCC. The two UART pins are used for communication and control of the RST_N connected to the RNBD/RN487x module. This library also allows for the extension of module pin behaviors through the simple RNBD module object interface, where any device/project specific instantiations exist. Refer to the `rnbd_interface.c/h/rn487x_interface.c/h` file.
+This driver has the inherent code capability to distinguish between Message exchange and Data exchange at the level of the connected MCU and module devices. The library supplies all the APIs necessary for the implementation of a functional BLE-connected end-device. The three required pins can be selected through the GUI provided by the MCC. The two UART pins are used for communication and control of the RST_N connected to the RNBD/RN487x module. This library also allows for the extension of module pin behaviors through the simple RNBD module object interface, where any device/project specific instantiations exist. Refer to the `rnbd_interface.c/h/rn487x_interface.c/h` file.
 
 `iRNBD_FunctionPtrs_t` is a typedef struct which can be found in the `rnbd_interface.h/rn487x_interface.h` file and consists of nine function pointers. The concrete creation of RNBD as an object is instantiated in the `rnbd_interface.c/rn487x_interface.c`. Find the private static implementations of the desired behavior in the `rnbd_interface.c/rn487x_interface.c` file. In some cases, such as DELAY or UART, the supporting behavior is supplied through another supporting library module. When applicable, ‘inline’ has been used to reduce stack depth overhead.
 
@@ -938,7 +930,7 @@ The library allows the configuration of three pins associated with support featu
 
 |Library Name: Output\(s\)|Module: Input\(s\)|Description|Module Physical Defaults|
 |-------------------------|------------------|-----------|------------------------|
-|BT\_MODE|P2\_0|<br /> `1` : Application Mode<br /> `0` : Test Mode/Flash Update/EEPROM Configuration<br />|Active-Low, Internal Pull-High|
+|BT\_MODE|P2\_0|<br /> `1`: Application Mode<br /> `0`: Test Mode/Flash Update/EEPROM Configuration<br />|Active-Low, Internal Pull-High|
 |BT\_RST|RST\_N|Module Reset|Active-Low, Internal Pull-High|
 |BT\_RX\_IND|P3\_3|Configured as UART RX Indication pin|Active-Low|
 
