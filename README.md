@@ -26,6 +26,7 @@
     -   [RN487x Example 2: Running Transparent UART Example Application](#rn487x-example2:-running-transparent-uart-example-application)
 -   [Summary](#summary)
 
+<br />
 -   **Note:**
  1. In the below project creation steps where ever RNBD is mentioned is applicable for both RNBD451 and RNBD350 devices.
 
@@ -285,15 +286,11 @@ This section explains the RNBD MPLAB X IDE project setup, code generation, and s
 
 **Notes:**
 
-1.   The Basic Data Exchange application uses only one instance of UART1 (PLIB ---> EUSART1) for data transfer.
-2.   **Important:** For EUSART Rx1 and Tx1, deselect the checkboxes in the Analog, Slew Rate and Input Level Control columns.
+1. The Basic Data Exchange application uses only one instance of UART1 (PLIB ---> EUSART1) for data transfer.<br />
+   ![](images/GUID-EC994A31-01F2-4337-8A5E-FC2BD24948F8-low.png)
 
-    ![](images/GUID-35C1A268-4B45-445C-A18D-6226F6B17F94-low.png)
-
-    <br />
-
-    ![](images/GUID-EC994A31-01F2-4337-8A5E-FC2BD24948F8-low.png)
-
+2. **Important:** For EUSART Rx1 and Tx1, deselect the checkboxes in the Analog, Slew Rate and Input Level Control columns.<br />
+   ![](images/GUID-35C1A268-4B45-445C-A18D-6226F6B17F94-low.png)
 
 Configuration for PIC Basic Data Exchange was completed. Click [here](#rnbd-code-generation-&-compilation) for the RNBD code generation and compilation section.
 
@@ -315,14 +312,11 @@ Configuration for PIC Basic Data Exchange was completed. Click [here](#rnbd-code
 
 **Notes:**
 
-1.   The Transparent UART application uses two instances of UART1 and UART2 (PLIB ---> EUSART1 and EUSART2) for data transfer.
+1. The Transparent UART application uses two instances of UART1 and UART2 (PLIB ---> EUSART1 and EUSART2) for data transfer.<br />
+   ![](images/GUID-2588BC61-2739-4821-BF2A-8EBBC69C45E8-low.png)
+
 2.   **Important:** For EUSART Rx1 and Tx1, deselect the checkboxes in the Analog, Slew Rate and Input Level Control columns.
-
-    ![](images/GUID-6FE8C4EC-D58D-4571-B1FF-EACC4DD81068-low.png)
-
-    <br />
-
-    ![](images/GUID-2588BC61-2739-4821-BF2A-8EBBC69C45E8-low.png)
+   ![](images/GUID-6FE8C4EC-D58D-4571-B1FF-EACC4DD81068-low.png)<br />
 
 
 Configuration for PIC Transparent UART was completed. Click [here](#rnbd-code-generation-&-compilation) for the RNBD code generation and compilation section.
@@ -487,12 +481,12 @@ The `#define DEMO_PERIODIC_TRANSMIT_COUNT (10000)` and `#define DEMO_PERIODIC_CH
     ![](images/GUID-65CA4B07-2C54-4799-A9AE-826FD83B676D-low.png)
 
 7.  Select "Listen for notifications" on the application.
-      -   It may be required to enable app notifications on the phone. Data will be sent periodically to the device and will be visible beneath the Notify/Listen setting.
+      - It may be required to enable app notifications on the phone. Data will be sent periodically to the device and will be visible beneath the Notify/Listen setting
 
-        -   Before turning on the Notify/Indicate setting<br />
+      - Before turning on the Notify/Indicate setting<br />
         ![](images/GUID-C5223277-D33D-4366-8CA4-124D340F0554-low.png)
 
-        -  After turning on the Notify/Indicate setting, the mobile application can read "31", data which was sent from the RNBD module<br />
+      - After turning on the Notify/Indicate setting, the mobile application can read "31", data which was sent from the RNBD module<br />
         ![](images/GUID-83D3CD62-CA8C-4C6C-88AF-CA15728E6392-low.png)
 
 
