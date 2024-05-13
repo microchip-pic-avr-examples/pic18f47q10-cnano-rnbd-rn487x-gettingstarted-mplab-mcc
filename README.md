@@ -27,9 +27,10 @@
 -   [Summary](#summary)
 
 <br />
--   **Note:**
- 1. In the below project creation steps where ever RNBD is mentioned is applicable for both RNBD451 and RNBD350 devices.
+- **Note:**
 
+ 1. In the below project creation steps where ever RNBD is mentioned is applicable for both RNBD451 and RNBD350 devices.
+ <br />
  2. The Over-the-Air (OTA) Device Firmware Update (DFU) support is not applicable for RNBD350-based applications because the OTA DFU for RNBD350 is implemented using the Host Microcontroller (MCU) DFU process. OTA is not supported for 8-bit applications due to memory limitation.
 
 # Introduction<a name="introduction"></a>
@@ -315,8 +316,8 @@ Configuration for PIC Basic Data Exchange was completed. Click [here](#rnbd-code
 1. The Transparent UART application uses two instances of UART1 and UART2 (PLIB ---> EUSART1 and EUSART2) for data transfer.<br />
    ![](images/GUID-2588BC61-2739-4821-BF2A-8EBBC69C45E8-low.png)
 
-2.   **Important:** For EUSART Rx1 and Tx1, deselect the checkboxes in the Analog, Slew Rate and Input Level Control columns.
-   ![](images/GUID-6FE8C4EC-D58D-4571-B1FF-EACC4DD81068-low.png)<br />
+2. **Important:** For EUSART Rx1 and Tx1, deselect the checkboxes in the Analog, Slew Rate and Input Level Control columns.<br />
+   ![](images/GUID-6FE8C4EC-D58D-4571-B1FF-EACC4DD81068-low.png)
 
 
 Configuration for PIC Transparent UART was completed. Click [here](#rnbd-code-generation-&-compilation) for the RNBD code generation and compilation section.
