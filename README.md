@@ -27,9 +27,9 @@
 -   [Summary](#summary)
 
 <br />
-- **Note:**
+- **Notes**:
 
- 1. In the below project creation steps where ever RNBD is mentioned is applicable for both RNBD451 and RNBD350 devices.
+ 1. The project creation steps where RNBD is mentioned are applicable for both RNBD451 and RNBD350 devices.
  <br />
  2. The Over-the-Air (OTA) Device Firmware Update (DFU) support is not applicable for RNBD350-based applications because the OTA DFU for RNBD350 is implemented using the Host Microcontroller (MCU) DFU process. OTA is not supported for 8-bit applications due to memory limitation.
 
@@ -84,7 +84,7 @@ This library uses one Universal Asynchronous Receiver and Transmitter (UART), on
 -   [MPLAB® X IDE 6.20](http://www.microchip.com/mplab/mplab-x-ide) or newer
 
 -   [MPLAB XC8 2.46](http://www.microchip.com/mplab/compilers) or newer
--   [MPLAB Code Configurator 5.3.7](https://www.microchip.com/mplab/mplab-code-configurator) or newer
+-   [MPLAB Code Configurator 5.5.1](https://www.microchip.com/mplab/mplab-code-configurator) or newer
 -   [MPLAB Code Configurator](https://www.microchip.com/mplab/mplab-code-configurator) Device Libraries PIC10 / PIC12 / PIC16 / PIC18 Microcontrollers (MCUs)
 -   [MPLAB Code Configurator](https://www.microchip.com/mplab/mplab-code-configurator) Device Libraries PIC® MCUs
 -   [Microchip PIC18F-Q\_DFP Series Device Support \(1.25.433\)](https://packs.download.microchip.com/) or newer
@@ -112,17 +112,17 @@ This library uses one Universal Asynchronous Receiver and Transmitter (UART), on
 ## RN487x Pin Mapping and Hardware Setup
 -   Pin mapping table between the MCU and the RN487x Click:
 
-    | S.no | Pin Functionality | PIC | RN487x Click |
-    |------|-------------------|-----|--------------|
-    |   1  | Receive (RxD)     | RB3 |     Tx       |
-    |   2  | Transmit (TxD)    | RB0 |     Rx       |
-    |   3  | BT_RST            | RC7 |     RST      |
+    | S. No | Pin Functionality | PIC | RN487x Click |
+    |-------|-------------------|-----|--------------|
+    |   1   | Receive (RxD)     | RB3 |     Tx       |
+    |   2   | Transmit (TxD)    | RB0 |     Rx       |
+    |   3   | BT_RST            | RC7 |     RST      |
 
 -   Connect the development board of your choice and then connect the RN487x to the proper slot. The image below shows how to connect the RN487x Click to **Slot 2**.
 
     ![](images/GUID-A52CEC62-AA5A-441A-A17E-8551FAF5C9ED-low.png)
 
-    **Important:** The Slot was decided based on the UART instances which were configured for this example application (see the pin mapping table between the MCU and the RN487x Click).
+    **Important:** The slot was decided based on the UART instances which were configured for this example application (see the pin mapping table between the MCU and the RN487x Click).
 
 # Software Prerequisite<a name="software-prerequisite"></a>
 
@@ -370,7 +370,7 @@ Configuration settings:
 
     <br />
 
-    For Status Indication Pins 1 and 2, the checkboxes in the Default Analog, Start High, Weak Pullup, Slew Rate and Input Level Control columns will be checked.
+    For Status Indication pins 1 and 2, Analog, Start High, Weak Pullup, Slew Rate and Input Level Control columns will be checked by default during the time of pin selection.
 
     <br />
 
@@ -416,11 +416,11 @@ Configuration settings:
     - Pin mapping Table between the MCU and RNBD Click
         <br />
 
-        |S.no|Pin Functionality|PIC|RNBD Click  |
-        |----|-----------------|---|----------  |
-        |  1 |Receive (RxD)    |RB3| Tx         |
-        |  2 |Transmit (TxD)   |RB0| Rx         |
-        |  3 |BT_RST           |RC7| RST        |
+        |S. No|Pin Functionality|PIC|RNBD Click  |
+        |-----|-----------------|---|------------|
+        |  1  |Receive (RxD)    |RB3| Tx         |
+        |  2  |Transmit (TxD)   |RB0| Rx         |
+        |  3  |BT_RST           |RC7| RST        |
 
         <br />
 
@@ -482,7 +482,7 @@ The `#define DEMO_PERIODIC_TRANSMIT_COUNT (10000)` and `#define DEMO_PERIODIC_CH
     ![](images/GUID-65CA4B07-2C54-4799-A9AE-826FD83B676D-low.png)
 
 7.  Select "Listen for notifications" on the application.
-      - It may be required to enable app notifications on the phone. Data will be sent periodically to the device and will be visible beneath the Notify/Listen setting
+      - It may be required to enable app notifications on the phone. Data will be sent periodically to the device and will be visible beneath the Notify/Listen setting.
 
       - Before turning on the Notify/Indicate setting<br />
         ![](images/GUID-C5223277-D33D-4366-8CA4-124D340F0554-low.png)
@@ -681,7 +681,7 @@ Configuration for PIC Transparent UART was completed. Click [here](#rn487x-code-
         <br />
 
         |S. No|Pin Functionality|PIC|RN487x Click|
-        |-----|-----------------|---|----------  |
+        |-----|-----------------|---|------------|
         |  1  |Receive (RxD)    |RB3| Tx         |
         |  2  |Transmit (TxD)   |RB0| Rx         |
         |  3  |BT_RST           |RC7| RST        |
